@@ -1,0 +1,12 @@
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\BookShop.Domain.dll
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\BookShop.Domain.pdb
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.csproj.AssemblyReference.cache
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.csproj.CoreCompileInputs.cache
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.dll
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.pdb
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\BookShop.Domain.dll.config
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\EntityFramework.dll
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\EntityFramework.xml
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.csproj.CopyComplete

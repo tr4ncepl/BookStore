@@ -1,0 +1,21 @@
+﻿@using BookShop.Domain.Entities;
+@model IEnumerable<Book>
+
+
+@{
+    ViewBag.Title = "Książki";
+}
+
+@foreach(var p in Model)
+            {
+                <div>
+                    <h3>@p.Title</h3>
+                    <h4>@p.Author</h4>
+                    <h4>@p.Genre</h4>
+                    @p.Description
+                    <h5>@p.Rating</h5>
+                    <h4>@p.Price.ToString("c")</h4>
+                    <h6>--------------------------------------------------------------------</h6>
+                </div>
+            }
+
