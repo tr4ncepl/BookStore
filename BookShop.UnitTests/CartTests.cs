@@ -2,6 +2,9 @@
 using System;
 using System.Linq;
 using BookShop.Domain.Entities;
+using BookShop.Domain.Abstract;
+using Moq;
+using BookShop.WebUI.Controllers;
 
 namespace BookShop.UnitTests
 {
@@ -96,6 +99,25 @@ namespace BookShop.UnitTests
             target.Clear();
 
             Assert.AreEqual(target.Lines.Count(),0);
+        }
+
+
+        [TestMethod]
+        public void Can_Add_To_Cart()
+        {
+            Mock<IBookRepository> mock = new Mock<IBookRepository>();
+            mock.Setup(m => m.Books).Returns(new Book[]
+            {
+                new Book{BookID=1,Title="P1",Genre="G1"}, }.AsQueryable());
+
+            Cart cart = new Cart();
+
+            CartController target =new CartController(mock.Object);
+
+            target.AddToCart(cart, 1, null);
+
+            Assert.AreEqual(cart.Lines.Count(), 1);
+
         }
 
 

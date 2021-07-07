@@ -3,10 +3,12 @@
 @{ 
     ViewBag.Title = "Księgarnia: Twój koszyk";
 }
-
+<style>
+    #cartTable td {vertical-align:middle;}
+</style>
 
 <h2>Twój koszyk</h2>
-<table class="table">
+<table id="cartTable" class="table">
     <thead>
         <tr>
             <th>Książka</th>
@@ -23,6 +25,14 @@
             <td class="text-left">@line.Quantity</td>
             <td class="text-right">@line.Book.Price.ToString("c")</td>
             <td class="text-right">@((line.Quantity*line.Book.Price).ToString("c"))</td>
+            <td>
+                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                {
+                    @Html.Hidden("BookId",line.Book.BookID)
+                    @Html.HiddenFor(x=>x.ReturnUrl)
+                    <input class="btn btn-sm btn-warning" type="submit" value="Usuń" />
+                }
+            </td>
         </tr>
             }
     </tbody>
