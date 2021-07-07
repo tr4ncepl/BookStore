@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="CartTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,6 +110,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BookShop.Domain\BookShop.Domain.csproj">
+      <Project>{4aadc5f3-b43a-4642-965f-695018511301}</Project>
+      <Name>BookShop.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BookShop.WebUI\BookShop.WebUI.csproj">
       <Project>{15717be4-d461-4984-812c-a2ad6ce0a922}</Project>
       <Name>BookShop.WebUI</Name>

@@ -41,7 +41,7 @@ namespace BookShop.Domain.Entities
             lineCollection.Clear();
         }
 
-        public IEnumerable<CartLine> lines
+        public IEnumerable<CartLine> Lines
         {
             get { return lineCollection; }
         }
