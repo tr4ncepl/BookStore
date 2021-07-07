@@ -1,0 +1,15 @@
+﻿@model BookShop.Domain.Entities.Book
+
+<div class="well">
+    <h3>
+        <strong>@Model.Title</strong>
+        <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
+    </h3>
+    <span class="lead">@Model.Author</span>
+    <span class="pull-right label label-info">Ocena: @Model.Rating</span>
+    <h4>
+        <span class="lead">@Model.Genre</span>
+    </h4>
+    
+</div>
+
