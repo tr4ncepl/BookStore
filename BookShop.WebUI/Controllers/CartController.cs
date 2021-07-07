@@ -18,12 +18,12 @@ namespace BookShop.WebUI.Controllers
             repository = repo;
         }
 
-        public ViewResult Index(Cart cart, string returUrl)
+        public ViewResult Index(Cart cart, string returnUrl)
         {
             return View(new CartIndexViewModel
             {
                 Cart = cart,
-                ReturnUrl = returUrl
+                ReturnUrl = returnUrl
             });
         }
 
@@ -50,6 +50,11 @@ namespace BookShop.WebUI.Controllers
                 cart.RemoveLine(book);
             }
             return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public PartialViewResult Summary(Cart cart)
+        {
+            return PartialView(cart);
         }
 
         
