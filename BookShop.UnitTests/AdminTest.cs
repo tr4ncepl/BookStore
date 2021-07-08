@@ -1,0 +1,41 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Moq;
+using BookShop.Domain.Entities;
+using BookShop.Domain.Abstract;
+using BookShop.WebUI.Controllers;
+
+namespace BookShop.UnitTests
+{
+    [TestClass]
+    public class AdminTest
+    {
+        [TestMethod]
+        public void Index_Contains_All_Products()
+        {
+            Mock<IBookRepository> mock = new Mock<IBookRepository>();
+            mock.Setup(m => m.Books).Returns(new Book[]
+                {
+                new Book { BookID =1, Title = "T1"},
+                new Book {  BookID=2, Title="T2"},
+                new Book {  BookID =3, Title="T3"}
+            });
+
+
+            AdminController target = new AdminController(mock.Object);
+
+            Book[] result = ((IEnumerable<Book>)target.Index().
+                ViewData.Model).ToArray();
+
+            Assert.AreEqual(result.Length, 3);
+            Assert.AreEqual("T1", result[0].Title);
+            Assert.AreEqual("T2", result[1].Title);
+            Assert.AreEqual("T3", result[2].Title);
+
+        }
+    }
+}
