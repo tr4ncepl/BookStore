@@ -17,5 +17,28 @@ namespace BookShop.Domain.Concrete
         {
             get { return context.Books; }
         }
+
+        public void SaveBook(Book book)
+        {
+            if(book.BookID ==0)
+            {
+                context.Books.Add(book);
+            }
+            else
+            {
+                Book dbEntry = context.Books.Find(book.BookID);
+                if(dbEntry!=null)
+                {
+                    dbEntry.Title = book.Title;
+                    dbEntry.Author = book.Author;
+                    dbEntry.Description = book.Description;
+                    dbEntry.Price = book.Price;
+                    dbEntry.Genre = book.Genre;
+                    dbEntry.Rating = book.Rating;
+                }
+            }
+
+            context.SaveChanges();
+        }
     }
 }

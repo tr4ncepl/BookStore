@@ -1,0 +1,44 @@
+﻿@model BookShop.Domain.Entities.Book
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edycja @Model.Title</h3>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.BookID)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if (property.PropertyName != "BookID")
+                {
+                    <div class="form-group">
+                        <label>@(property.DisplayName ?? property.PropertyName)</label>
+                        @if (property.PropertyName == "Description")
+                        {
+                            @Html.TextArea(property.PropertyName, null,
+                            new { @class = "form-control", rows = 5 })
+                        }
+                        else
+                        {
+                            @Html.TextBox(property.PropertyName, null,
+                            new { @class = "form-control" })
+                        }
+                    </div>
+                }
+            }
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Zapisz" class="btn btn-primary" />
+            @Html.ActionLink("Anuluj i wróć do listy", "Index", null, new
+            {
+            @class = "btn btn-default"
+            })
+        </div>
+    }
+</div>
+
+@{
+    ViewBag.Title = "Administracja: edycja " + @Model.Title;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}

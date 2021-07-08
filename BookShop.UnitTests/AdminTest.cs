@@ -37,5 +37,25 @@ namespace BookShop.UnitTests
             Assert.AreEqual("T3", result[2].Title);
 
         }
+
+
+        [TestMethod]
+        public void Can_Edit_Book()
+        {
+            Mock<IBookRepository> mock = new Mock<IBookRepository>();
+
+            mock.Setup(m => m.Books).Returns(new Book[]
+            {
+                new Book{BookID =1, Title="T1"},
+                new Book{BookID=2,Title="T2"},
+                new Book{BookID=3,Title="T3"}
+            });
+
+
+            AdminController target = new AdminController(mock.Object);
+
+            Book p1 = target.Edit(1).ViewData.Model as Book;
+
+        }
     }
 }
