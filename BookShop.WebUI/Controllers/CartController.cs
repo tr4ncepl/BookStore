@@ -7,15 +7,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace BookShop.WebUI.Controllers
 {
     public class CartController : Controller
     {
         private IBookRepository repository;
+        private IOrderProcessor orderProcessor;
 
-        public CartController(IBookRepository repo)
+        public CartController(IBookRepository repo,IOrderProcessor processor)
         {
             repository = repo;
+            orderProcessor = processor;
         }
 
         public ViewResult Index(Cart cart, string returnUrl)
@@ -55,6 +58,26 @@ namespace BookShop.WebUI.Controllers
         public ViewResult Checkout()
         {
             return View(new ShippingDetails());
+        }
+
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+        {
+            if(cart.Lines.Count()==0)
+            {
+                ModelState.AddModelError("", "Koszyk jest pusty!");
+            }
+
+            if(ModelState.IsValid)
+            {
+                orderProcessor.ProcessOrder(cart, shippingDetails);
+                cart.Clear();
+                return View("Completed");
+            }
+            else
+            {
+                return View(shippingDetails);
+            }
         }
 
         public PartialViewResult Summary(Cart cart)

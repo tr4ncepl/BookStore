@@ -6,6 +6,7 @@ using BookShop.Domain.Entities;
 using BookShop.Domain.Abstract;
 using BookShop.Domain.Concrete;
 using Moq;
+using System.Configuration;
 
 
 
@@ -35,6 +36,15 @@ namespace BookShop.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IBookRepository>().To<EFBookRepository>();
+
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager
+                .AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
+                .WithConstructorArgument("settings", emailSettings);
         }
 
 
