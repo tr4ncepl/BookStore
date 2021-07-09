@@ -4,8 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookShop.Domain.Entities;
-
+using BookShop.Domain.Concrete;
 using BookShop.Domain.Abstract;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Owin;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BookShop.WebUI.Controllers
 {
@@ -13,6 +18,9 @@ namespace BookShop.WebUI.Controllers
     {
 
         private IBookRepository repository;
+        
+
+       
         // GET: Admin
 
         public AdminController(IBookRepository repo)
@@ -32,10 +40,16 @@ namespace BookShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Book book)
+        public ActionResult Edit(Book book, HttpPostedFileBase image=null)
         {
             if(ModelState.IsValid)
             {
+                if(image!=null)
+                {
+                    book.ImageMimeType = image.ContentType;
+                    book.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(book.ImageData, 0, image.ContentLength);
+                }
                 repository.SaveBook(book);
                 TempData["message"] = string.Format("Zapisano {0} ", book.Title);
                 return RedirectToAction("Index");
@@ -59,5 +73,12 @@ namespace BookShop.WebUI.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        
+
+
+        
+
+
     }
 }

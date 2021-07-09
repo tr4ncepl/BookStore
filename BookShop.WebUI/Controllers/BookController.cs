@@ -40,6 +40,19 @@ namespace BookShop.WebUI.Controllers
             };
             return View(model);
         }
+
+        public FileContentResult GetImage(int bookId)
+        {
+            Book bk = repository.Books.FirstOrDefault(b => b.BookID == bookId);
+            if(bk!=null)
+            {
+                return File(bk.ImageData, bk.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
         
     }
 }

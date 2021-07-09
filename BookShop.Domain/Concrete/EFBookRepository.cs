@@ -49,6 +49,8 @@ namespace BookShop.Domain.Concrete
                     dbEntry.Price = book.Price;
                     dbEntry.Genre = book.Genre;
                     dbEntry.Rating = book.Rating;
+                    dbEntry.ImageData = book.ImageData;
+                    dbEntry.ImageMimeType = book.ImageMimeType;
                 }
             }
 

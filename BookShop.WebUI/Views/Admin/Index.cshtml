@@ -18,24 +18,26 @@
                 <th class="NumericCol">Cena</th>
                 <th>Akcje</th>
             </tr>
-            @foreach(var item in Model)
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.BookID</td>
-                    <td>@Html.ActionLink(item.Title, "Edit",new { item.BookID })</td>
+                    <td>@Html.ActionLink(item.Title, "Edit", new { item.BookID })</td>
                     <td class="NumericCol">@item.Price.ToString("c")</td>
                     <td>
-                        @using(Html.BeginForm("Delete","Admin"))
-                {
-                    @Html.Hidden("BookID",item.BookID)
-                            <input type="submit" value="Usuń"/>
-                }
+                        @using (Html.BeginForm("Delete", "Admin"))
+                        {
+                            @Html.Hidden("BookID", item.BookID)
+                            <input type="submit" value="Usuń" />
+                        }
                     </td>
                 </tr>
             }
         </table>
     </div>
     <div class="panel-footer">
-        @Html.ActionLink("Dodaj nową książkę","Create",null,new { @class = "btn btn-default" })
+        @Html.ActionLink("Dodaj nową książkę", "Create", null, new { @class = "btn btn-default" })
     </div>
+
+  
 </div>

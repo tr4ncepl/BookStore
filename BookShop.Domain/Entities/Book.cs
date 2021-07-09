@@ -41,5 +41,8 @@ namespace BookShop.Domain.Entities
         [Required]
         [Range(0,10,ErrorMessage ="Proszę podać ocenę 0-10")]
         public decimal Rating { get; set; }
+
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
     }
 }
