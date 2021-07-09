@@ -18,6 +18,20 @@ namespace BookShop.Domain.Concrete
             get { return context.Books; }
         }
 
+
+
+        public Book DeleteBook(int bookID)
+        {
+            Book dbEntry = context.Books.Find(bookID);
+            if(dbEntry!=null)
+            {
+                context.Books.Remove(dbEntry);
+                context.SaveChanges();
+            }
+
+            return dbEntry;
+
+        }
         public void SaveBook(Book book)
         {
             if(book.BookID ==0)

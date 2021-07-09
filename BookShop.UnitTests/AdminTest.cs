@@ -57,5 +57,29 @@ namespace BookShop.UnitTests
             Book p1 = target.Edit(1).ViewData.Model as Book;
 
         }
+
+        [TestMethod]
+        public void Can_Delete_Book()
+        {
+            Book book1 = new Book { BookID = 2, Title = "T1" };
+            Mock<IBookRepository> mock = new Mock<IBookRepository>();
+            mock.Setup(m => m.Books).Returns(new Book[]
+            {
+                new Book{BookID =1, Title="T2"},
+                book1,
+                new Book{BookID = 3,Title="t#"}
+            }) ;
+
+            AdminController target = new AdminController(mock.Object);
+
+            target.Delete(book1.BookID);
+
+
+            mock.Verify(m => m.DeleteBook(book1.BookID));
+
+        }
     }
+
+
+    
 }

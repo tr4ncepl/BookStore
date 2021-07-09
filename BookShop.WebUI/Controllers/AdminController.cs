@@ -49,5 +49,15 @@ namespace BookShop.WebUI.Controllers
         {
             return View("Edit", new Book());
         }
+
+        public ActionResult Delete(int bookID)
+        {
+            Book deletedBook = repository.DeleteBook(bookID);
+            if(deletedBook!=null)
+            {
+                TempData["message"] = string.Format("Usunięto {0}", deletedBook.Title);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
