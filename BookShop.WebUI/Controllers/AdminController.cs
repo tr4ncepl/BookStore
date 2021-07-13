@@ -20,6 +20,8 @@ namespace BookShop.WebUI.Controllers
 
         private IBookRepository repository;
         
+
+        [Authorize]
         public ActionResult UserList()
         {
             return View(UserManager.Users);
