@@ -9,7 +9,9 @@ namespace BookShop.WebUI.Models
     public class CreateModel
     {
         [Required]
+        [Display(Name="Login")]
         public string Name { get; set; }
+        
         [Required]
         public string Email { get; set; }
         [Required]

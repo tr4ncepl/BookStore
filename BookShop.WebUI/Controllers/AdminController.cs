@@ -20,7 +20,7 @@ namespace BookShop.WebUI.Controllers
 
         private IBookRepository repository;
         
-        public ActionResult Test()
+        public ActionResult UserList()
         {
             return View(UserManager.Users);
         }
@@ -48,7 +48,7 @@ namespace BookShop.WebUI.Controllers
                 model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Test");
+                    return RedirectToAction("UserList");
                 }
                 else
                 {
@@ -75,6 +75,88 @@ namespace BookShop.WebUI.Controllers
         {
             return View(repository.Books);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteUser(string id)
+        {
+            AppUser user = await UserManager.FindByIdAsync(id);
+            if(user!=null)
+            {
+                IdentityResult result = await UserManager.DeleteAsync(user);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("UserList");
+                }
+                else
+                {
+                    return View("Error", result.Errors);
+                }
+            }
+            else
+            {
+                return View("Error", new string[] { "Nie znaleziono użytkownika" });
+            }
+        }
+
+        public async Task<ActionResult> EditUser(string id)
+        {
+            AppUser user = await UserManager.FindByIdAsync(id);
+            if(user!=null)
+            {
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("UserList");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditUser(string id, string email, string password)
+        {
+            AppUser user = await UserManager.FindByIdAsync(id);
+            if(user!=null)
+            {
+                user.Email = email;
+                IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
+                if(!validEmail.Succeeded)
+                {
+                    AddErrorsFromResult(validEmail);
+                }
+                IdentityResult validPass = null;
+                if(password!=string.Empty)
+                {
+                    validPass = await UserManager.PasswordValidator.ValidateAsync(password);
+                    if(validPass.Succeeded)
+                    {
+                        user.PasswordHash = UserManager.PasswordHasher.HashPassword(password);
+                    }
+                    else
+                    {
+                        AddErrorsFromResult(validPass);
+                    }
+                }
+                if((validEmail.Succeeded && validPass==null) || (validEmail.Succeeded && password!=string.Empty && validPass.Succeeded))
+                {
+                    IdentityResult result = await UserManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("UserList");
+                    }
+                    else
+                    {
+                        AddErrorsFromResult(result);
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Nie znaleziono użytkownika");
+            }
+            return View(user);
+        }
+
+       
 
         public ViewResult Edit(int bookId)
         {

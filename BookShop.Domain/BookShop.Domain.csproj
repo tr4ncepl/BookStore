@@ -106,6 +106,8 @@
     <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Concrete\AppIdentityDbContext.cs" />
     <Compile Include="Concrete\AppUserManager.cs" />
+    <Compile Include="Concrete\CustomPasswordValidator.cs" />
+    <Compile Include="Concrete\CustomUserValidator.cs" />
     <Compile Include="Concrete\EFBookRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />

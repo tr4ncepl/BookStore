@@ -2,7 +2,7 @@
 
 @{ ViewBag.Title = "Create User";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";}
-<h2>Create User</h2>
+<h2>Nowy użytkownik</h2>
 @Html.ValidationSummary(false)
 @using (Html.BeginForm())
 {
@@ -18,6 +18,6 @@
         <label>Password</label>
         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-    @Html.ActionLink("Cancel", "Test", null, new { @class = "btn btn-default" })
+    <button type="submit" class="btn btn-primary">Stwórz</button>
+    @Html.ActionLink("Anuluj", "UserList", null, new { @class = "btn btn-default" })
 }
