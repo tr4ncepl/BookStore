@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Owin;
 using Microsoft.AspNet.Identity.Owin;
+using BookShop.WebUI.Models;
 
 namespace BookShop.WebUI.Controllers
 {
@@ -19,8 +20,51 @@ namespace BookShop.WebUI.Controllers
 
         private IBookRepository repository;
         
+        public ActionResult Test()
+        {
+            return View(UserManager.Users);
+        }
 
-       
+        private AppUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+
+        public ActionResult CreateUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateUser(CreateModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = new AppUser { UserName = model.Name, Email = model.Email };
+                IdentityResult result = await UserManager.CreateAsync(user,
+                model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Test");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            return View(model);
+        }
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (string error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
         // GET: Admin
 
         public AdminController(IBookRepository repo)
