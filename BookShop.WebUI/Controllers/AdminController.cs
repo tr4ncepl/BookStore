@@ -21,7 +21,7 @@ namespace BookShop.WebUI.Controllers
         private IBookRepository repository;
         
 
-        [Authorize]
+        [Authorize(Roles =("admin,superadmin"))]
         public ActionResult UserList()
         {
             return View(UserManager.Users);
@@ -35,11 +35,14 @@ namespace BookShop.WebUI.Controllers
             }
         }
 
+
+        [Authorize(Roles = ("admin,superadmin"))]
         public ActionResult CreateUser()
         {
             return View();
         }
 
+        [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
         public async Task<ActionResult> CreateUser(CreateModel model)
         {
@@ -73,11 +76,15 @@ namespace BookShop.WebUI.Controllers
         {
             repository = repo;
         }
+
+        [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Index()
         {
             return View(repository.Books);
         }
 
+
+        [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
         public async Task<ActionResult> DeleteUser(string id)
         {
@@ -100,6 +107,8 @@ namespace BookShop.WebUI.Controllers
             }
         }
 
+
+        [Authorize(Roles = ("admin,superadmin"))]
         public async Task<ActionResult> EditUser(string id)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
@@ -113,6 +122,8 @@ namespace BookShop.WebUI.Controllers
             }
         }
 
+
+        [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
         public async Task<ActionResult> EditUser(string id, string email, string password)
         {
@@ -158,8 +169,9 @@ namespace BookShop.WebUI.Controllers
             return View(user);
         }
 
-       
 
+
+        [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Edit(int bookId)
         {
             Book book = repository.Books
@@ -167,6 +179,8 @@ namespace BookShop.WebUI.Controllers
             return View(book);
         }
 
+
+        [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
         public ActionResult Edit(Book book, HttpPostedFileBase image=null)
         {
@@ -187,11 +201,15 @@ namespace BookShop.WebUI.Controllers
                 return View(book);
             }
         }
+
+        [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Create()
         {
             return View("Edit", new Book());
         }
 
+
+        [Authorize(Roles = ("admin,superadmin"))]
         public ActionResult Delete(int bookID)
         {
             Book deletedBook = repository.DeleteBook(bookID);

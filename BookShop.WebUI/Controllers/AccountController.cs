@@ -21,9 +21,20 @@ namespace BookShop.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if(HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("Error", new string[] { "Brak dostępu" });
+            }
             ViewBag.returnUrl = returnUrl;
             return View();
 
+        }
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            AuthManager.SignOut();
+            return RedirectToAction("..");
         }
 
 

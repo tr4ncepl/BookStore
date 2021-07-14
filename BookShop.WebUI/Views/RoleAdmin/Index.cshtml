@@ -3,13 +3,13 @@
 @model IEnumerable<AppRole>
 
 @{
-    ViewBag.Title = "Roles";
+    ViewBag.Title = "Panel administratora - Role ";
 }
 
 <div class="panel panel-primary">
-    <div class="panel-heading">Role</div>
+    <div class="panel-heading">Role w systemie</div>
     <table class="table table-striped">
-        <tr><th>ID</th><th>Nazwa</th><th>Użytkownicy</th></tr>
+        <tr><th>ID</th><th>Nazwa</th><th>Użytkownicy</th><th>Akcje</th></tr>
         @if(Model.Count()==0)
             {
                 <tr><td colspan="4" class="text-center">Brak ról</td></tr>
@@ -34,7 +34,7 @@
                         <td>
                             @using(Html.BeginForm("Delete","RoleAdmin",new {id = role.Id }))
                     {
-                        @Html.ActionLink("Edit","Edit", new {id = role.Id},new {@class = "btn btn-primary btn-xs"})
+                        @Html.ActionLink("Edytuj","Edit", new {id = role.Id},new {@class = "btn btn-primary btn-xs"})
                                 <button class="btn btn-danger btn-xs" type="submit">Usuń</button>
                     }
                         </td>
