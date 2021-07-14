@@ -8,6 +8,10 @@ TODO
 
 #Wyszukiwarka
 
+#Rozbudowanie informacji o książkach
+
+#Szczegółowa strona dla każdej książki
+
 
 
 
