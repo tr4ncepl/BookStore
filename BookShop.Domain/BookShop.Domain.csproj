@@ -118,7 +118,10 @@
     <Compile Include="Entities\AppUser.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

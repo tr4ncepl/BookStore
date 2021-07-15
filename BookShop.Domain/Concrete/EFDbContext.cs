@@ -11,5 +11,6 @@ namespace BookShop.Domain.Concrete
     class EFDbContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
+        
     }
 }
