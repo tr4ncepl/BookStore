@@ -115,12 +115,16 @@ namespace BookShop.Domain.Concrete
 
             using (var context = new EFDbContext())
             {
-                int n = numBook[0].Book.BookID;
-                var book = context.Books
-                            .FirstOrDefault(b => b.BookID == n);
-                var bookOrders = new BookOrder { order = newOrder1, book = book, Quantity = 2 };
-                //context.Orders.Add(newOrder1);
-                context.BookOrders.Add(bookOrders);
+                for (int i = 0; i < numBook.Length; i++)
+                {
+                    int n = numBook[i].Book.BookID;
+                    var book = context.Books
+                                .FirstOrDefault(b => b.BookID == n);
+                    int q = numBook[i].Quantity;
+                    var bookOrders = new BookOrder { order = newOrder1, book = book, Quantity = q };
+                    
+                    context.BookOrders.Add(bookOrders);
+                }
                 context.SaveChanges();
             }
             
