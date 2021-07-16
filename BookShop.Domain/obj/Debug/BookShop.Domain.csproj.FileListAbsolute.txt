@@ -48,3 +48,6 @@ C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\Microsoft.Owin.Se
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\Newtonsoft.Json.xml
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.AddManyToManyOrders.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.csproj.GenerateResource.cache
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.fix1.resources

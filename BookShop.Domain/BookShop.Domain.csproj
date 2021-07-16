@@ -117,16 +117,32 @@
     <Compile Include="Entities\AppRole.cs" />
     <Compile Include="Entities\AppUser.cs" />
     <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\BookOrder.cs" />
     <Compile Include="Entities\Cart.cs" />
-    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
+    <Compile Include="Migrations\202107161106489_AddManyToManyOrders.cs" />
+    <Compile Include="Migrations\202107161106489_AddManyToManyOrders.designer.cs">
+      <DependentUpon>202107161106489_AddManyToManyOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107161314155_fix1.cs" />
+    <Compile Include="Migrations\202107161314155_fix1.designer.cs">
+      <DependentUpon>202107161314155_fix1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202107161106489_AddManyToManyOrders.resx">
+      <DependentUpon>202107161106489_AddManyToManyOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107161314155_fix1.resx">
+      <DependentUpon>202107161314155_fix1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

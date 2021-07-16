@@ -7,6 +7,7 @@ using System.Net.Mail;
 using BookShop.Domain.Abstract;
 using BookShop.Domain.Entities;
 using System.Net;
+using System.Web.Razor.Parser.SyntaxTree;
 
 namespace BookShop.Domain.Concrete
 {
@@ -28,6 +29,11 @@ namespace BookShop.Domain.Concrete
     
     public class EmailOrderProcessor : IOrderProcessor
     {
+
+        
+
+       
+
         private EmailSettings emailSettings;
 
         public EmailOrderProcessor(EmailSettings settings)
@@ -37,7 +43,7 @@ namespace BookShop.Domain.Concrete
 
         public void ProcessOrder(Cart cart, ShippingDetails shippingInfo)
         {
-
+           
             var fromAddress = new MailAddress("ksiegarnialykeion@gmail.com", "Zamowienie");
             var toAddress = new MailAddress("zamowienialykeion@gmail.com", "To Name");
             const string fromPassword = "Lykeion123$";
@@ -89,6 +95,39 @@ namespace BookShop.Domain.Concrete
             {
                 smtp.Send(message);
             }
+
+            
+                var newOrder1 = new Order
+                {
+                    RecAdress = shippingInfo.Line1,
+                    RecCity = shippingInfo.City,
+                    RecCountry = shippingInfo.Country,
+                    RecName = shippingInfo.Name,
+                    RecZip = shippingInfo.Zip,
+                    RecState = shippingInfo.State,
+                    GiftWrap = shippingInfo.GiftWrap,
+                    TotalValue = cart.Lines.Sum(e => e.Book.Price * e.Quantity)
+                };
+
+                CartLine[] numBook = cart.Lines.ToArray();
+
+
+
+            using (var context = new EFDbContext())
+            {
+                int n = numBook[0].Book.BookID;
+                var book = context.Books
+                            .FirstOrDefault(b => b.BookID == n);
+                var bookOrders = new BookOrder { order = newOrder1, book = book, Quantity = 2 };
+                //context.Orders.Add(newOrder1);
+                context.BookOrders.Add(bookOrders);
+                context.SaveChanges();
+            }
+            
+                
+                
+                
+            
 
 
 

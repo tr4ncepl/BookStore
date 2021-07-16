@@ -8,9 +8,15 @@ using BookShop.Domain.Entities;
 
 namespace BookShop.Domain.Concrete
 {
-    class EFDbContext : DbContext
+    public class EFDbContext : DbContext
     {
+
+        public EFDbContext() : base("name=EFDbContext") { }
         public DbSet<Book> Books { get; set; }
-        
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<BookOrder> BookOrders { get; set; }
+
     }
 }
