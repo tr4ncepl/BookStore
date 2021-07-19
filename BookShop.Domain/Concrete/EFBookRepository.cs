@@ -18,6 +18,10 @@ namespace BookShop.Domain.Concrete
             get { return context.Books; }
         }
 
+        public IEnumerable<Order> Orders
+        {
+            get { return context.Orders; }
+        }
 
 
         public Book DeleteBook(int bookID)
@@ -31,6 +35,31 @@ namespace BookShop.Domain.Concrete
 
             return dbEntry;
 
+        }
+
+        public void SaveOrder(Order order)
+        {
+            if(order.OrderId==0)
+            {
+                context.Orders.Add(order);
+            }
+            else
+            {
+                Order dbEntry = context.Orders.Find(order.OrderId);
+                if(dbEntry!=null)
+                {
+                    dbEntry.RecName = order.RecName;
+                    dbEntry.RecAdress = order.RecAdress;
+                    dbEntry.RecCity = order.RecCity;
+                    dbEntry.RecCountry = order.RecCountry;
+                    dbEntry.RecState = order.RecState;
+                    dbEntry.RecZip = order.RecZip;
+                    dbEntry.TotalValue = order.TotalValue;
+                    
+                }
+            }
+
+            context.SaveChanges();
         }
         public void SaveBook(Book book)
         {

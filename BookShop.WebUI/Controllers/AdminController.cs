@@ -19,6 +19,10 @@ namespace BookShop.WebUI.Controllers
     {
 
         private IBookRepository repository;
+
+        
+
+        
         
 
         [Authorize(Roles =("admin,superadmin"))]
@@ -77,10 +81,19 @@ namespace BookShop.WebUI.Controllers
             repository = repo;
         }
 
+        
+
+       
+
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Index()
         {
             return View(repository.Books);
+        }
+
+        public ViewResult OrderList()
+        {
+            return View(repository.Orders);
         }
 
 
@@ -179,6 +192,28 @@ namespace BookShop.WebUI.Controllers
             return View(book);
         }
 
+        [Authorize(Roles =("admin,superadmin"))]
+        public ViewResult EditOrder(int orderId)
+        {
+            Order order = repository.Orders
+                .FirstOrDefault(o => o.OrderId == orderId);
+            return View(order);
+        }
+        [Authorize(Roles = ("admin,superadmin"))]
+        [HttpPost]
+        public ActionResult EditOrder(Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveOrder(order);
+                TempData["message"] = string.Format("Zapisano zamówienie nr {0}", order.OrderId);
+                return RedirectToAction("OrderList");
+            }
+            else
+            {
+                return View(order);
+            }
+        }
 
         [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]

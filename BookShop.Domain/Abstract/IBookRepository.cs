@@ -11,9 +11,15 @@ namespace BookShop.Domain.Abstract
     {
         IEnumerable<Book> Books { get; }
 
+
+        IEnumerable<Order> Orders { get; }
+        
+
         void SaveBook(Book book);
 
         Book DeleteBook(int  bookID);
+
+        void SaveOrder(Order order);
     }
 
     
