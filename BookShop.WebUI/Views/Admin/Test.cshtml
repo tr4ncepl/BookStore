@@ -1,0 +1,30 @@
+﻿@using BookShop.Domain.Entities;
+
+
+@model Tuple<IQueryable<Book>, IEnumerable<Publisher>>
+
+<table class="table table-striped table-condensed table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Tytul</th>
+        <th>Cena</th>
+    </tr>
+    @foreach(var item in Model.Item1)
+            {
+        <tr>
+            <td>@item.BookID</td>
+            <td>@item.Title</td>
+            <td>@item.Price.ToString("c")</td>
+        </tr>
+            }
+</table>
+
+
+@using (Html.BeginForm())
+            {
+                @Html.ListBoxFor(m=>Model.Item2, new MultiSelectList(Model.Item2.ToList(), "PublisherId", "PublisherName"), new { @class = "form-control" })
+            }
+
+
+
+

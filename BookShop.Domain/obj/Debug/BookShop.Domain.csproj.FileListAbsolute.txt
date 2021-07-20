@@ -55,3 +55,14 @@ C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.M
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.PublisherFix.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.bookPublisherRelation.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.fixBook.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.test.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.testfix.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.v2.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addAuthorEntity.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addAuthor.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.updateAuthor.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.authorBookRelation.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.deletePublishersfromBook.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.deletebrokenPublisher.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.testNewPublisher.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addBookPubRel.resources

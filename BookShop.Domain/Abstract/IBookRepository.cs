@@ -14,6 +14,8 @@ namespace BookShop.Domain.Abstract
         IEnumerable<Order> Orders { get; }
 
         IEnumerable<Publisher> Publishers { get; }
+
+        IEnumerable<Author> Authors { get; }
         
 
         void SaveBook(Book book);
@@ -23,6 +25,8 @@ namespace BookShop.Domain.Abstract
         void SaveOrder(Order order);
 
         void SavePublisher(Publisher publisher);
+
+        void SaveAuthor(Author author);
 
 
     }

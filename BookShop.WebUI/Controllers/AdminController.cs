@@ -13,6 +13,7 @@ using Owin;
 using Microsoft.AspNet.Identity.Owin;
 using BookShop.WebUI.Models;
 using System.Data.Entity;
+using System.Dynamic;
 
 namespace BookShop.WebUI.Controllers
 {
@@ -89,8 +90,8 @@ namespace BookShop.WebUI.Controllers
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Index()
         {
-            var result = repository.Books.Include(b => b.Publisher);
-            return View(result);
+            //var result = repository.Books.Include(b => b.Publisher);
+            return View(repository.Books);
             
         }
 
@@ -99,10 +100,7 @@ namespace BookShop.WebUI.Controllers
         {
             return View(repository.Orders);
         }
-        public ViewResult PublisherList()
-        {
-            return View(repository.Publishers);
-        }
+        
 
 
         [Authorize(Roles = ("admin,superadmin"))]
@@ -190,6 +188,13 @@ namespace BookShop.WebUI.Controllers
             return View(user);
         }
 
+        /*
+        public ViewResult Test()
+        {
+            var tuple = new Tuple<IQueryable<Book>, IEnumerable<Publisher>>(repository.Books, repository.Publishers);
+            return View(tuple);
+        }
+        */
 
 
         [Authorize(Roles = ("admin,superadmin"))]
@@ -200,12 +205,7 @@ namespace BookShop.WebUI.Controllers
             return View(book);
         }
 
-        public ViewResult EditPublisher(int publisherId)
-        {
-            Publisher publisher = repository.Publishers
-                .FirstOrDefault(p => p.PublisherId == publisherId);
-            return View(publisher);
-        }
+       
 
         [Authorize(Roles =("admin,superadmin"))]
         public ViewResult EditOrder(int orderId)
@@ -214,6 +214,7 @@ namespace BookShop.WebUI.Controllers
                 .FirstOrDefault(o => o.OrderId == orderId);
             return View(order);
         }
+
         [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
         public ActionResult EditOrder(Order order)
@@ -229,20 +230,10 @@ namespace BookShop.WebUI.Controllers
                 return View(order);
             }
         }
-        [HttpPost]
-        public ActionResult EditPublisher(Publisher publisher)
-        {
-            if(ModelState.IsValid)
-            {
-                repository.SavePublisher(publisher);
-                TempData["message"] = string.Format("Pomyślnie dodano wydawcę: {0}", publisher.PublisherName);
-                return RedirectToAction("PublisherList");
-            }
-            else
-            {
-                return View(publisher);
-            }
-        }
+
+
+
+       
 
         [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
@@ -272,10 +263,7 @@ namespace BookShop.WebUI.Controllers
             return View("Edit", new Book());
         }
 
-        public ViewResult NewPublisher()
-        {
-            return View("EditPublisher", new Publisher());
-        }
+        
 
 
         [Authorize(Roles = ("admin,superadmin"))]
@@ -289,10 +277,100 @@ namespace BookShop.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
-        
 
 
-        
+
+
+
+
+
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult AuthorsList()
+        {
+            return View(repository.Authors);
+        }
+
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult NewAuthor()
+        {
+            return View("EditAuthor", new Author());
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult EditAuthor(int authorId)
+        {
+            Author author = repository.Authors
+                .FirstOrDefault(a => a.AuthorId == authorId);
+            return View(author);
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        [HttpPost]
+        public ActionResult EditAuthor(Author author)
+        {
+            if(ModelState.IsValid)
+            {
+                repository.SaveAuthor(author);
+                TempData["message"] = string.Format("Zapisano {0} ", author.AuthorName + " " + author.AuthorLastName);
+                return RedirectToAction("AuthorsList");
+            }
+            else
+            {
+                return View(author);
+            }
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult PublisherList()
+        {
+            return View(repository.Publishers);
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult NewPublisher()
+        {
+            return View("EditPublisher", new Publisher());
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult EditPublisher(int publisherId)
+        {
+            Publisher publisher = repository.Publishers
+                .FirstOrDefault(p => p.PublisherId == publisherId);
+            return View(publisher);
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        [HttpPost]
+        public ActionResult EditPublisher(Publisher publisher)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SavePublisher(publisher);
+                TempData["message"] = string.Format("Pomyślnie zapisano wydawcę: {0}", publisher.PublisherName);
+                return RedirectToAction("PublisherList");
+            }
+            else
+            {
+                return View(publisher);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }

@@ -24,8 +24,13 @@ namespace BookShop.Domain.Concrete
         }
 
         public IEnumerable<Publisher> Publishers
-        {
+       {
             get { return context.Publishers; }
+        }
+
+        public IEnumerable<Author> Authors
+        {
+            get { return context.Authors; }
         }
 
 
@@ -41,7 +46,7 @@ namespace BookShop.Domain.Concrete
             return dbEntry;
 
         }
-
+        
         public void SavePublisher(Publisher publisher)
         {
             if(publisher.PublisherId==0)
@@ -50,12 +55,13 @@ namespace BookShop.Domain.Concrete
             }
             else
             {
-                Publisher dbentry = context.Publishers.Find(publisher.PublisherId);
-                if(dbentry!=null)
+                Publisher dbEntry = context.Publishers.Find(publisher.PublisherId);
+                if(dbEntry!=null)
                 {
-                    dbentry.PublisherName = publisher.PublisherName;
-                    dbentry.PublisherDescription = publisher.PublisherDescription;
+                    dbEntry.PublisherName = publisher.PublisherName;
+                    dbEntry.PublisherDesc = publisher.PublisherDesc;
                 }
+
             }
 
             context.SaveChanges();
@@ -85,6 +91,24 @@ namespace BookShop.Domain.Concrete
 
             context.SaveChanges();
         }
+
+        public void SaveAuthor(Author author)
+        {
+            if(author.AuthorId==0)
+            {
+                context.Authors.Add(author);
+            }
+            else
+            {
+                Author dbEntry = context.Authors.Find(author.AuthorId);
+                if(dbEntry!=null)
+                {
+                    dbEntry.AuthorName = author.AuthorName;
+                    dbEntry.AuthorLastName = author.AuthorLastName;
+                }
+            }
+            context.SaveChanges();
+        }
         public void SaveBook(Book book)
         {
             if(book.BookID ==0)
@@ -97,13 +121,14 @@ namespace BookShop.Domain.Concrete
                 if(dbEntry!=null)
                 {
                     dbEntry.Title = book.Title;
-                    dbEntry.Author = book.Author;
+                    
                     dbEntry.Description = book.Description;
                     dbEntry.Price = book.Price;
                     dbEntry.Genre = book.Genre;
                     dbEntry.Rating = book.Rating;
                     dbEntry.ImageData = book.ImageData;
                     dbEntry.ImageMimeType = book.ImageMimeType;
+                    
                 }
             }
 

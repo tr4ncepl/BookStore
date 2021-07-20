@@ -11,13 +11,13 @@ namespace BookShop.Domain.Entities
     {
 
         public int PublisherId { get; set; }
-
-        [Display(Name ="Nazwa wydawnictwa")]
+        
+        [Display(Name ="Nazwa")]
+        [Required]
         public string PublisherName { get; set; }
 
-        [DataType(DataType.MultilineText), Display(Name = "Opis wydawnictwa")]
+        [Display(Name = "Opis")]
         [Required]
-        public string PublisherDescription { get; set; }
-
+        public string PublisherDesc { get; set; }
     }
 }

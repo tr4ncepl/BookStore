@@ -25,7 +25,7 @@ namespace BookShop.WebUI.Controllers
             BookListViewModel model = new BookListViewModel
             {
                 Books = repository.Books
-                .Include(b=>b.Publisher)
+                //.Include(b=>b.Publisher)
                 .Where(b => genre == null || b.Genre == genre)
                 .OrderBy(b => b.BookID)
                 .Skip((page - 1) * PageSize)

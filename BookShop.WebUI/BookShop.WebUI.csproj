@@ -225,6 +225,9 @@
     <Content Include="Views\Admin\EditOrder.cshtml" />
     <Content Include="Views\Admin\PublisherList.cshtml" />
     <Content Include="Views\Admin\EditPublisher.cshtml" />
+    <Content Include="Views\Admin\Test.cshtml" />
+    <Content Include="Views\Admin\AuthorsList.cshtml" />
+    <Content Include="Views\Admin\EditAuthor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

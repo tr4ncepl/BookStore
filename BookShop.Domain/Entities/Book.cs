@@ -18,9 +18,7 @@ namespace BookShop.Domain.Entities
         [Display(Name ="Tytuł")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage ="Proszę podać autora.")]
-        [Display(Name ="Autor")]
-        public string Author { get; set; }
+        
 
 
         [Required(ErrorMessage ="Proszę podać gatunek.")]
@@ -45,9 +43,16 @@ namespace BookShop.Domain.Entities
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
         
-        [Display(Name ="Wydawnictwo")]
-        [Required(ErrorMessage = "Proszę podać gatunek.")]
+
+        [Display(Name = "Autor")]
+        [Required(ErrorMessage = "Proszę podać autora")]
+        public Author Author { get; set; }
+
+        [Display(Name = "Autor")]
+        [Required(ErrorMessage = "Proszę podać autora")]
         public Publisher Publisher { get; set; }
+
+
 
         public virtual ICollection<BookOrder> BookOrders { get; set; }
     }
