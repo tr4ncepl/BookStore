@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BookShop.Domain.Entities.Publisher>
+
+@{ 
+    ViewBag.Title = "Panel administracyjny: Lista wydawców";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Lista wydawców</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-sti table-condensed table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Akcje</th>
+            </tr>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.PublisherId</td>
+                    <td>@Html.ActionLink(item.PublisherName, "EditPublisher", new { item.PublisherId })</td>
+                    <td>@item.PublisherDescription</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>

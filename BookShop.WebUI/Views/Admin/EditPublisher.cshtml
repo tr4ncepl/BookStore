@@ -1,0 +1,46 @@
+﻿@model BookShop.Domain.Entities.Publisher
+
+@{
+    ViewBag.Title = "Edycja Wydawcy:  " + Model.PublisherName;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Edycja wydawcy: @Model.PublisherName</h3>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.PublisherId)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                switch (property.PropertyName)
+                {
+                    case "PublisherId":
+                        break;
+                    default:
+                        <div class="form-group">
+                            <label>@(property.DisplayName ?? property.PropertyName)</label>
+                            @if (property.PropertyName == "PublisherDescription")
+                            {
+                                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                            }
+                            else
+                            {
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                            }
+                            @Html.ValidationMessage(property.PropertyName)
+                        </div>
+                        break;
+                }
+            }
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Zapis" class="btn btn-primary" />
+            @Html.ActionLink("Anuluj i wróć co listy", "PublisherList", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

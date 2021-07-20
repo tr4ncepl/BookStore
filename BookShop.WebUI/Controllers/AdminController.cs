@@ -91,9 +91,14 @@ namespace BookShop.WebUI.Controllers
             return View(repository.Books);
         }
 
+        [Authorize(Roles =("admin,superadmin"))]
         public ViewResult OrderList()
         {
             return View(repository.Orders);
+        }
+        public ViewResult PublisherList()
+        {
+            return View(repository.Publishers);
         }
 
 
@@ -192,6 +197,13 @@ namespace BookShop.WebUI.Controllers
             return View(book);
         }
 
+        public ViewResult EditPublisher(int publisherId)
+        {
+            Publisher publisher = repository.Publishers
+                .FirstOrDefault(p => p.PublisherId == publisherId);
+            return View(publisher);
+        }
+
         [Authorize(Roles =("admin,superadmin"))]
         public ViewResult EditOrder(int orderId)
         {
@@ -212,6 +224,20 @@ namespace BookShop.WebUI.Controllers
             else
             {
                 return View(order);
+            }
+        }
+        [HttpPost]
+        public ActionResult EditPublisher(Publisher publisher)
+        {
+            if(ModelState.IsValid)
+            {
+                repository.SavePublisher(publisher);
+                TempData["message"] = string.Format("Pomyślnie dodano wydawcę: {0}", publisher.PublisherName);
+                return RedirectToAction("PublisherList");
+            }
+            else
+            {
+                return View(publisher);
             }
         }
 
@@ -241,6 +267,11 @@ namespace BookShop.WebUI.Controllers
         public ViewResult Create()
         {
             return View("Edit", new Book());
+        }
+
+        public ViewResult NewPublisher()
+        {
+            return View("EditPublisher", new Publisher());
         }
 
 

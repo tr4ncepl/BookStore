@@ -120,6 +120,7 @@
     <Compile Include="Entities\BookOrder.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\Publisher.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Migrations\202107161106489_AddManyToManyOrders.cs" />
     <Compile Include="Migrations\202107161106489_AddManyToManyOrders.designer.cs">
@@ -128,6 +129,14 @@
     <Compile Include="Migrations\202107161314155_fix1.cs" />
     <Compile Include="Migrations\202107161314155_fix1.designer.cs">
       <DependentUpon>202107161314155_fix1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107201428238_addPublisher.cs" />
+    <Compile Include="Migrations\202107201428238_addPublisher.designer.cs">
+      <DependentUpon>202107201428238_addPublisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107201458028_PublisherFix.cs" />
+    <Compile Include="Migrations\202107201458028_PublisherFix.designer.cs">
+      <DependentUpon>202107201458028_PublisherFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +151,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107161314155_fix1.resx">
       <DependentUpon>202107161314155_fix1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107201428238_addPublisher.resx">
+      <DependentUpon>202107201428238_addPublisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107201458028_PublisherFix.resx">
+      <DependentUpon>202107201458028_PublisherFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,6 +23,11 @@ namespace BookShop.Domain.Concrete
             get { return context.Orders; }
         }
 
+        public IEnumerable<Publisher> Publishers
+        {
+            get { return context.Publishers; }
+        }
+
 
         public Book DeleteBook(int bookID)
         {
@@ -35,6 +40,25 @@ namespace BookShop.Domain.Concrete
 
             return dbEntry;
 
+        }
+
+        public void SavePublisher(Publisher publisher)
+        {
+            if(publisher.PublisherId==0)
+            {
+                context.Publishers.Add(publisher);
+            }
+            else
+            {
+                Publisher dbentry = context.Publishers.Find(publisher.PublisherId);
+                if(dbentry!=null)
+                {
+                    dbentry.PublisherName = publisher.PublisherName;
+                    dbentry.PublisherDescription = publisher.PublisherDescription;
+                }
+            }
+
+            context.SaveChanges();
         }
 
         public void SaveOrder(Order order)

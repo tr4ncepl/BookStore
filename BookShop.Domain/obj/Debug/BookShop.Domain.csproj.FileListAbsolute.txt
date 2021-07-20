@@ -51,3 +51,5 @@ C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\bin\Debug\Microsoft.Owin.Ho
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.AddManyToManyOrders.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.csproj.GenerateResource.cache
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.fix1.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addPublisher.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.PublisherFix.resources

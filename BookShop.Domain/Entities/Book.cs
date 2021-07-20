@@ -45,6 +45,8 @@ namespace BookShop.Domain.Entities
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
 
+        public Publisher Publisher { get; set; }
+
         public virtual ICollection<BookOrder> BookOrders { get; set; }
     }
 }
