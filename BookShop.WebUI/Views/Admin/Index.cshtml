@@ -16,6 +16,7 @@
                 <th>ID</th>
                 <th>Tytył</th>
                 <th class="NumericCol">Cena</th>
+                <th>Wydawnictwo</th>
                 <th>Akcje</th>
             </tr>
             @foreach (var item in Model)
@@ -24,6 +25,7 @@
                     <td>@item.BookID</td>
                     <td>@Html.ActionLink(item.Title, "Edit", new { item.BookID })</td>
                     <td class="NumericCol">@item.Price.ToString("c")</td>
+                    <td>@item.Publisher.PublisherName</td>
                     <td>
                         @using (Html.BeginForm("Delete", "Admin"))
                         {

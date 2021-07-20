@@ -13,7 +13,7 @@ namespace BookShop.Domain.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Book> Books
+        public IQueryable<Book> Books
         {
             get { return context.Books; }
         }

@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Owin;
 using Microsoft.AspNet.Identity.Owin;
 using BookShop.WebUI.Models;
+using System.Data.Entity;
 
 namespace BookShop.WebUI.Controllers
 {
@@ -88,7 +89,9 @@ namespace BookShop.WebUI.Controllers
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Index()
         {
-            return View(repository.Books);
+            var result = repository.Books.Include(b => b.Publisher);
+            return View(result);
+            
         }
 
         [Authorize(Roles =("admin,superadmin"))]

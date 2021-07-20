@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BookShop.Domain.Entities;
 using BookShop.Domain.Abstract;
 using BookShop.WebUI.Models;
+using System.Data.Entity;
 
 namespace BookShop.WebUI.Controllers
 {
@@ -24,6 +25,7 @@ namespace BookShop.WebUI.Controllers
             BookListViewModel model = new BookListViewModel
             {
                 Books = repository.Books
+                .Include(b=>b.Publisher)
                 .Where(b => genre == null || b.Genre == genre)
                 .OrderBy(b => b.BookID)
                 .Skip((page - 1) * PageSize)

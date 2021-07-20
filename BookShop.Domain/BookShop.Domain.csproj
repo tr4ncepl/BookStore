@@ -138,6 +138,14 @@
     <Compile Include="Migrations\202107201458028_PublisherFix.designer.cs">
       <DependentUpon>202107201458028_PublisherFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107201504148_bookPublisherRelation.cs" />
+    <Compile Include="Migrations\202107201504148_bookPublisherRelation.designer.cs">
+      <DependentUpon>202107201504148_bookPublisherRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107201507050_fixBook.cs" />
+    <Compile Include="Migrations\202107201507050_fixBook.designer.cs">
+      <DependentUpon>202107201507050_fixBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -157,6 +165,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107201458028_PublisherFix.resx">
       <DependentUpon>202107201458028_PublisherFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107201504148_bookPublisherRelation.resx">
+      <DependentUpon>202107201504148_bookPublisherRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107201507050_fixBook.resx">
+      <DependentUpon>202107201507050_fixBook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

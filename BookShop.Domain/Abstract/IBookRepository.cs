@@ -9,7 +9,7 @@ namespace BookShop.Domain.Abstract
 {
     public interface IBookRepository
     {
-        IEnumerable<Book> Books { get; }
+        IQueryable<Book> Books { get; }
 
         IEnumerable<Order> Orders { get; }
 
