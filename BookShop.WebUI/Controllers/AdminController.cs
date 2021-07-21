@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity.Owin;
 using BookShop.WebUI.Models;
 using System.Data.Entity;
 using System.Dynamic;
+using System.Text;
 
 namespace BookShop.WebUI.Controllers
 {
@@ -188,13 +189,40 @@ namespace BookShop.WebUI.Controllers
             return View(user);
         }
 
-        /*
+        
         public ViewResult Test()
         {
-            var tuple = new Tuple<IQueryable<Book>, IEnumerable<Publisher>>(repository.Books, repository.Publishers);
-            return View(tuple);
+            var model = new TestViewModel
+            {
+                Books = new Book(),
+                SelectedItemIds = new[] {1},
+                SelectedAuthors = new[] {1}
+
+            };
+            return View(model);
+            
         }
-        */
+
+        [HttpPost]
+        public string Test(IEnumerable<int> selectedItemIds, TestViewModel book, IEnumerable<int> selectedAuthors)
+        {
+            if(selectedItemIds==null)
+            {
+                return "Nie wybrano;";
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                int aut = selectedAuthors.First();
+                int pub = selectedItemIds.First();
+                sb.Append("Wyvrales " +string.Join(", ",aut, pub));
+                repository.SaveBook(book.Books,pub,aut);
+                return sb.ToString();
+
+               
+            }
+        }
+        
 
 
         [Authorize(Roles = ("admin,superadmin"))]
@@ -247,7 +275,7 @@ namespace BookShop.WebUI.Controllers
                     book.ImageData = new byte[image.ContentLength];
                     image.InputStream.Read(book.ImageData, 0, image.ContentLength);
                 }
-                repository.SaveBook(book);
+                repository.SaveBook(book,1,2);
                 TempData["message"] = string.Format("Zapisano {0} ", book.Title);
                 return RedirectToAction("Index");
             }

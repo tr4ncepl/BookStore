@@ -109,10 +109,14 @@ namespace BookShop.Domain.Concrete
             }
             context.SaveChanges();
         }
-        public void SaveBook(Book book)
+        public void SaveBook(Book book,int publisherId, int authorId)
         {
             if(book.BookID ==0)
             {
+                var publisher = context.Publishers.FirstOrDefault(p => p.PublisherId == publisherId);
+                book.Publisher = publisher;
+                var author = context.Authors.FirstOrDefault(a => a.AuthorId == authorId);
+                book.Author = author;
                 context.Books.Add(book);
             }
             else

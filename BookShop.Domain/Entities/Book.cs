@@ -45,11 +45,11 @@ namespace BookShop.Domain.Entities
         
 
         [Display(Name = "Autor")]
-        [Required(ErrorMessage = "Proszę podać autora")]
+       
         public Author Author { get; set; }
 
-        [Display(Name = "Autor")]
-        [Required(ErrorMessage = "Proszę podać autora")]
+        [Display(Name = "Wydawca")]
+        
         public Publisher Publisher { get; set; }
 
 

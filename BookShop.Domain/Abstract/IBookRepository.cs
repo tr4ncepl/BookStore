@@ -18,7 +18,7 @@ namespace BookShop.Domain.Abstract
         IEnumerable<Author> Authors { get; }
         
 
-        void SaveBook(Book book);
+        void SaveBook(Book book,int publisherId, int authorId);
 
         Book DeleteBook(int  bookID);
 

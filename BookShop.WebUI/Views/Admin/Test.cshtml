@@ -1,29 +1,80 @@
-﻿@using BookShop.Domain.Entities;
+﻿@model BookShop.WebUI.Models.TestViewModel
+@{
+    ViewBag.Title = "Administracja: edycja " + @Model.Books.Title;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
 
 
-@model Tuple<IQueryable<Book>, IEnumerable<Publisher>>
 
-<table class="table table-striped table-condensed table-bordered">
-    <tr>
-        <th>ID</th>
-        <th>Tytul</th>
-        <th>Cena</th>
-    </tr>
-    @foreach(var item in Model.Item1)
-            {
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Test", "Admin", FormMethod.Post))
+    {
+    <table cellpadding="0" cellspacing="0">
         <tr>
-            <td>@item.BookID</td>
-            <td>@item.Title</td>
-            <td>@item.Price.ToString("c")</td>
+            <th colspan="2" align="center">Person Details</th>
         </tr>
-            }
-</table>
+        <tr>
+            <td>Tytul </td>
+            <td>
+                @Html.TextBoxFor(m => m.Books.Title)
+            </td>
+        </tr>
+        <tr>
+            <td>Cena: </td>
+            <td>
+                @Html.TextBoxFor(m => m.Books.Price)
+            </td>
+        </tr>
+        <tr>
+            <td>Gatunek: </td>
+            <td>
+                @Html.TextBoxFor(m => m.Books.Genre)
+            </td>
+        </tr>
+        <tr>
+            <td>Ocena </td>
+            <td>
+                @Html.TextBoxFor(m => m.Books.Rating)
+            </td>
+        </tr>
+        <tr>
+            <td>Opis </td>
+            <td>
+                @Html.TextBoxFor(m => m.Books.Description)
+            </td>
+        </tr>
+        <tr>
+            <td>Wydawca </td>
+            <td>
+                @Html.ListBoxFor(m => m.SelectedItemIds,
+                new MultiSelectList(Model.AvailableItems, "PublisherId", "PublisherName"))
+            </td>
+        </tr>
+        <tr>
+            <td>Autor </td>
+            <td>
+                @Html.ListBoxFor(m => m.SelectedAuthors,
+                new MultiSelectList(Model.AvailableAuthors, "AuthorId", "AuthorName"))
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+    }
+</body>
+</html>
 
 
-@using (Html.BeginForm())
-            {
-                @Html.ListBoxFor(m=>Model.Item2, new MultiSelectList(Model.Item2.ToList(), "PublisherId", "PublisherName"), new { @class = "form-control" })
-            }
+
 
 
 
