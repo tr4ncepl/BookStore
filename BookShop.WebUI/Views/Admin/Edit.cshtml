@@ -11,8 +11,12 @@
 
 
             <div class="form-group">
+                @Html.HiddenFor(m => m.Books.BookID)
+                @Html.HiddenFor(m=>m.Books.ImageData)
+                @Html.HiddenFor(m=>m.Books.ImageMimeType)
                 <label>Tytuł</label>
                 @Html.TextBoxFor(m => m.Books.Title, new { @class = "form-control" })
+
                 <label>Cena</label>
                 @Html.TextBoxFor(m => m.Books.Price, new { @class = "form-control" })
                 <label>Gatunek</label>

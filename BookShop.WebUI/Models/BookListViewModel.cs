@@ -18,14 +18,6 @@ namespace BookShop.WebUI.Models
     }
 
 
-    public class Item
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
-
-
     public class TestViewModel
     {
 
@@ -50,4 +42,7 @@ namespace BookShop.WebUI.Models
             get { return context.Authors; }
         }
     }
+
+
+
 }

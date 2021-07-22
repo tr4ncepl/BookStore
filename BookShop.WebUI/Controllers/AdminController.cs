@@ -192,12 +192,16 @@ namespace BookShop.WebUI.Controllers
         
         public ViewResult Test()
         {
-            var book = repository.Books.FirstOrDefault(b => b.BookID == 24);
+            var book = repository.Books.Include(m=>m.Author)
+                .Include(m=>m.Publisher)
+                .FirstOrDefault(b => b.BookID == 34);
+            var autid = book.Author.AuthorId;
+            var pubid = book.Publisher.PublisherId;
             var model = new TestViewModel
             {
-                Books = new Book(),
-                SelectedItemIds = new[] {1},
-                SelectedAuthors = new[] {1}
+                Books = book,
+                SelectedItemIds = new[] {pubid},
+                SelectedAuthors = new[] {autid}
 
             };
             return View(model);
@@ -219,7 +223,7 @@ namespace BookShop.WebUI.Controllers
                     StringBuilder sb = new StringBuilder();
                     int aut = selectedAuthors.First();
                     int pub = selectedItemIds.First();
-                    sb.Append("Wyvrales " + string.Join(", ", book.Books.Title, book.Books.Description, book.Books.Genre, book.Books.Price,aut,pub,book.Books.ImageData));
+                    sb.Append("Wyvrales " + string.Join(", ",book.Books.BookID, book.Books.Title, book.Books.Description, book.Books.Genre, book.Books.Price,aut,pub,book.Books.ImageData));
                     repository.SaveBook(book.Books, pub, aut);
                     return sb.ToString();
                 //}
@@ -232,12 +236,16 @@ namespace BookShop.WebUI.Controllers
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Edit(int bookId)
         {
-            var book = repository.Books.FirstOrDefault(b => b.BookID == bookId);
+            var book = repository.Books.Include(b=>b.Publisher)
+                .Include(b=>b.Author)
+                .FirstOrDefault(b => b.BookID == bookId);
+            var autId = book.Author.AuthorId;
+            var pubId = book.Publisher.PublisherId;
             var model = new TestViewModel
             {
                 Books = book,
-                SelectedItemIds = new[] { 1 },
-                SelectedAuthors = new[] { 1 }
+                SelectedItemIds = new[] { pubId },
+                SelectedAuthors = new[] { autId }
 
             };
             return View(model);
