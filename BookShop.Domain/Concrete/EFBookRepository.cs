@@ -125,7 +125,6 @@ namespace BookShop.Domain.Concrete
                 if(dbEntry!=null)
                 {
                     dbEntry.Title = book.Title;
-                    
                     dbEntry.Description = book.Description;
                     dbEntry.Price = book.Price;
                     dbEntry.Genre = book.Genre;

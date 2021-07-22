@@ -1,4 +1,71 @@
 ﻿@model BookShop.WebUI.Models.TestViewModel
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edycja @Model.Books.Title</h3>
+    </div>
+
+    @using (Html.BeginForm("Test", "Admin",
+ FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="panel-body">
+
+
+            <div class="form-group">
+                <label>Tytuł</label>
+                @Html.TextBoxFor(m => m.Books.Title, new { @class = "form-control" })
+                <label>Cena</label>
+                @Html.TextBoxFor(m => m.Books.Price, new { @class = "form-control" })
+                <label>Gatunek</label>
+                @Html.TextBoxFor(m => m.Books.Genre, new { @class = "form-control" })
+                <label>Ocena</label>
+                @Html.TextBoxFor(m => m.Books.Rating, new { @class = "form-control" })
+                <label>Opis</label>
+                @Html.TextAreaFor(m => m.Books.Description, new { @class = "form-control", rows = 5 })
+                <label>Wydawnictwo</label>
+                @Html.ListBoxFor(m => m.SelectedItemIds,
+            new MultiSelectList(Model.AvailableItems, "PublisherId", "PublisherName"))
+                <label>Autor</label>
+                @Html.ListBoxFor(m => m.SelectedAuthors,
+                new MultiSelectList(Model.AvailableAuthors, "AuthorId", "AuthorName"))
+            </div>
+
+            <div class="form-group">
+                <div style="position:relative;">
+                    <label>Zdjęcie</label>
+                    <a class='btn' href='javascript:;'>
+                        Wybierz plik...
+                        <input type="file" name="Image" size="40"
+                               style="position:absolute;z-index:2;top:0;
+ left:0;filter: alpha(opacity=0); opacity:0;
+ background-color:transparent;color:transparent;"
+                               onchange='$("#upload-file-info").html($(this).val());'>
+                    </a>
+                    <span class='label label-info' id="upload-file-info"></span>
+                </div>
+                @if (Model.Books.ImageData == null)
+                {
+                    <div class="form-control-static">Brak zdjęcia</div>
+                }
+                else
+                {
+                    <img class="img-thumbnail" width="150" height="150"
+                         src="@Url.Action("GetImage", "Book",
+ new { Model.Books.BookID })" />
+                }
+            </div>
+        </div>
+
+
+        <div class="panel-footer">
+            <input type="submit" value="Zapisz" class="btn btn-primary" />
+            @Html.ActionLink("Anuluj i wróć do listy", "Index", null, new
+            {
+                @class = "btn btn-default"
+            })
+        </div>
+    }
+</div>
+
 @{
     ViewBag.Title = "Administracja: edycja " + @Model.Books.Title;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -6,72 +73,12 @@
 
 
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    @using (Html.BeginForm("Test", "Admin", FormMethod.Post))
-    {
-    <table cellpadding="0" cellspacing="0">
-        <tr>
-            <th colspan="2" align="center">Person Details</th>
-        </tr>
-        <tr>
-            <td>Tytul </td>
-            <td>
-                @Html.TextBoxFor(m => m.Books.Title)
-            </td>
-        </tr>
-        <tr>
-            <td>Cena: </td>
-            <td>
-                @Html.TextBoxFor(m => m.Books.Price)
-            </td>
-        </tr>
-        <tr>
-            <td>Gatunek: </td>
-            <td>
-                @Html.TextBoxFor(m => m.Books.Genre)
-            </td>
-        </tr>
-        <tr>
-            <td>Ocena </td>
-            <td>
-                @Html.TextBoxFor(m => m.Books.Rating)
-            </td>
-        </tr>
-        <tr>
-            <td>Opis </td>
-            <td>
-                @Html.TextBoxFor(m => m.Books.Description)
-            </td>
-        </tr>
-        <tr>
-            <td>Wydawca </td>
-            <td>
-                @Html.ListBoxFor(m => m.SelectedItemIds,
-                new MultiSelectList(Model.AvailableItems, "PublisherId", "PublisherName"))
-            </td>
-        </tr>
-        <tr>
-            <td>Autor </td>
-            <td>
-                @Html.ListBoxFor(m => m.SelectedAuthors,
-                new MultiSelectList(Model.AvailableAuthors, "AuthorId", "AuthorName"))
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
-    }
-</body>
-</html>
+
+
+
+
+
 
 
 
