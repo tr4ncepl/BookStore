@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using BookShop.Domain.Concrete;
 using BookShop.Domain.Entities;
 using BookShop.WebUI.Models;
@@ -25,6 +27,56 @@ namespace BookShop.WebUI.Models
         {
             this.Books = new Book();
         }
+
+        private EFDbContext context = new EFDbContext();
+        public IEnumerable<int> SelectedItemIds { get; set; }
+
+        public IEnumerable<int> SelectedAuthors { get; set; }
+
+        public Book Books { get; set; }
+        public IEnumerable<Publisher> AvailableItems
+        {
+            get { return context.Publishers; }
+        }
+
+        public IEnumerable<Author> AvailableAuthors
+        {
+            get { return context.Authors; }
+        }
+    }
+
+    public class TestView 
+    {
+        [HiddenInput(DisplayValue = false)]
+        public int BookID { get; set; }
+
+        [Required(ErrorMessage = "Proszę podać nazwę książki.")]
+        [Display(Name = "PIES")]
+        public string Title { get; set; }
+
+
+        [Required(ErrorMessage = "Proszę podać gatunek.")]
+        [Display(Name = "Gatunek")]
+        public string Genre { get; set; }
+
+
+        [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Proszę podać dodatnią cenę.")]
+        [Display(Name = "Cena")]
+        public decimal Price { get; set; }
+
+        [DataType(DataType.MultilineText), Display(Name = "Opis")]
+        [Required(ErrorMessage = "Proszę podać opis.")]
+        public string Description { get; set; }
+
+        [Display(Name = "Ocena")]
+        [Required]
+        [Range(0, 10, ErrorMessage = "Proszę podać ocenę 0-10")]
+        public decimal Rating { get; set; }
+
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
+
 
         private EFDbContext context = new EFDbContext();
         public IEnumerable<int> SelectedItemIds { get; set; }

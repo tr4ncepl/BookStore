@@ -111,12 +111,13 @@ namespace BookShop.Domain.Concrete
         }
         public void SaveBook(Book book,int publisherId, int authorId)
         {
-            if(book.BookID ==0)
+            var publisher = context.Publishers.FirstOrDefault(p => p.PublisherId == publisherId);
+            book.Publisher = publisher;
+            var author = context.Authors.FirstOrDefault(a => a.AuthorId == authorId);
+            book.Author = author;
+            if (book.BookID ==0)
             {
-                var publisher = context.Publishers.FirstOrDefault(p => p.PublisherId == publisherId);
-                book.Publisher = publisher;
-                var author = context.Authors.FirstOrDefault(a => a.AuthorId == authorId);
-                book.Author = author;
+                
                 context.Books.Add(book);
             }
             else
@@ -131,6 +132,8 @@ namespace BookShop.Domain.Concrete
                     dbEntry.Rating = book.Rating;
                     dbEntry.ImageData = book.ImageData;
                     dbEntry.ImageMimeType = book.ImageMimeType;
+                    dbEntry.Publisher = publisher;
+                    dbEntry.Author = author;
                     
                 }
             }

@@ -192,16 +192,12 @@ namespace BookShop.WebUI.Controllers
         
         public ViewResult Test()
         {
-            var book = repository.Books.Include(m=>m.Author)
-                .Include(m=>m.Publisher)
-                .FirstOrDefault(b => b.BookID == 34);
-            var autid = book.Author.AuthorId;
-            var pubid = book.Publisher.PublisherId;
-            var model = new TestViewModel
+            
+            var model = new TestView
             {
-                Books = book,
-                SelectedItemIds = new[] {pubid},
-                SelectedAuthors = new[] {autid}
+                
+                SelectedItemIds = new[] {1},
+                SelectedAuthors = new[] {1}
 
             };
             return View(model);
@@ -209,23 +205,42 @@ namespace BookShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public string Test(IEnumerable<int> selectedItemIds, TestViewModel book, IEnumerable<int> selectedAuthors, HttpPostedFileBase image=null)
+        public ActionResult Test(IEnumerable<int> selectedItemIds, TestView book, IEnumerable<int> selectedAuthors, HttpPostedFileBase image=null)
         {
-            
+            if (ModelState.IsValid)
+            {
                 if (image != null)
                 {
-                    book.Books.ImageMimeType = image.ContentType;
-                    book.Books.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(book.Books.ImageData, 0, image.ContentLength);
+                    book.ImageMimeType = image.ContentType;
+                    book.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(book.ImageData, 0, image.ContentLength);
                 }
                 //else
-               // {
-                    StringBuilder sb = new StringBuilder();
-                    int aut = selectedAuthors.First();
-                    int pub = selectedItemIds.First();
-                    sb.Append("Wyvrales " + string.Join(", ",book.Books.BookID, book.Books.Title, book.Books.Description, book.Books.Genre, book.Books.Price,aut,pub,book.Books.ImageData));
-                    repository.SaveBook(book.Books, pub, aut);
-                    return sb.ToString();
+                // {
+                
+                int aut = selectedAuthors.First();
+                int pub = selectedItemIds.First();
+                var bk = new Book
+                {
+                    BookID = book.BookID,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Price = book.Price,
+                    Rating = book.Rating,
+                    Genre = book.Genre,
+                    ImageData = book.ImageData,
+                    ImageMimeType = book.ImageMimeType,
+
+                };
+                repository.SaveBook(bk, pub, aut);
+                TempData["message"] = string.Format("Zapisano {0} ", bk.Title);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(book);
+            }
+                    
                 //}
 
             
@@ -241,9 +256,16 @@ namespace BookShop.WebUI.Controllers
                 .FirstOrDefault(b => b.BookID == bookId);
             var autId = book.Author.AuthorId;
             var pubId = book.Publisher.PublisherId;
-            var model = new TestViewModel
+            var model = new TestView
             {
-                Books = book,
+                BookID=book.BookID,
+                Title=book.Title,
+                Rating=book.Rating,
+                Genre = book.Genre,
+                Description=book.Description,
+                Price=book.Price,
+                ImageData=book.ImageData,
+                ImageMimeType=book.ImageMimeType,
                 SelectedItemIds = new[] { pubId },
                 SelectedAuthors = new[] { autId }
 
@@ -283,34 +305,53 @@ namespace BookShop.WebUI.Controllers
 
         [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
-        public ActionResult Edit(IEnumerable<int> selectedItemIds, TestViewModel book, IEnumerable<int> selectedAuthors, HttpPostedFileBase image = null)
+        public ActionResult Edit(IEnumerable<int> selectedItemIds, TestView book, IEnumerable<int> selectedAuthors, HttpPostedFileBase image = null)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if(image!=null)
+                if (image != null)
                 {
-                    book.Books.ImageMimeType = image.ContentType;
-                    book.Books.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(book.Books.ImageData, 0, image.ContentLength);
+                    book.ImageMimeType = image.ContentType;
+                    book.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(book.ImageData, 0, image.ContentLength);
                 }
-                var aut = selectedAuthors.First();
-                var pub = selectedItemIds.First();
-                repository.SaveBook(book.Books,pub,aut);
-                TempData["message"] = string.Format("Zapisano {0} ", book.Books.Title);
+                //else
+                // {
+
+                int aut = selectedAuthors.First();
+                int pub = selectedItemIds.First();
+                var bk = new Book
+                {
+                    BookID = book.BookID,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Price = book.Price,
+                    Rating = book.Rating,
+                    Genre = book.Genre,
+                    ImageData = book.ImageData,
+                    ImageMimeType = book.ImageMimeType,
+
+                };
+                repository.SaveBook(bk, pub, aut);
+                TempData["message"] = string.Format("Zapisano {0} ", bk.Title);
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(book.Books);
+                return View(book);
             }
+
+            //}
+
+
         }
 
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Create()
         {
-            var model = new TestViewModel
+            var model = new TestView
             {
-                Books = new Book(),
+                
                 SelectedItemIds = new[] { 1 },
                 SelectedAuthors = new[] { 1 }
 

@@ -1,30 +1,44 @@
-﻿@model BookShop.WebUI.Models.TestViewModel
+﻿@model BookShop.WebUI.Models.TestView
+
+
 <div class="panel">
     <div class="panel-heading">
-        <h3>Edycja @Model.Books.Title</h3>
+        <h3>Edycja @Model.Title</h3>
     </div>
 
-    @using (Html.BeginForm("Edit", "Admin",
+    @using (Html.BeginForm("Test", "Admin",
  FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="panel-body">
 
+            @Html.HiddenFor(m => m.BookID)
+            @Html.HiddenFor(m => m.ImageData)
+            @Html.HiddenFor(m => m.ImageMimeType)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                switch (property.PropertyName)
+                {
+                    case "BookID":
+                    case "ImageData":
+                    case "ImageMimeType":
+                    case "SelectedItemIds":
+                    case "SelectedAuthors":
+                    case "Books":
+                    case "AvailableItems":
+                    case "AvailableAuthors":
 
+
+                        break;
+                    default:
+                        <div class="form-group">
+                            <label>@(property.DisplayName ?? property.PropertyName)</label>
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                            @Html.ValidationMessage(property.PropertyName)
+                        </div>
+                        break;
+                }
+            }
             <div class="form-group">
-                @Html.HiddenFor(m => m.Books.BookID)
-                @Html.HiddenFor(m=>m.Books.ImageData)
-                @Html.HiddenFor(m=>m.Books.ImageMimeType)
-                <label>Tytuł</label>
-                @Html.TextBoxFor(m => m.Books.Title, new { @class = "form-control" })
-
-                <label>Cena</label>
-                @Html.TextBoxFor(m => m.Books.Price, new { @class = "form-control" })
-                <label>Gatunek</label>
-                @Html.TextBoxFor(m => m.Books.Genre, new { @class = "form-control" })
-                <label>Ocena</label>
-                @Html.TextBoxFor(m => m.Books.Rating, new { @class = "form-control" })
-                <label>Opis</label>
-                @Html.TextAreaFor(m => m.Books.Description, new { @class = "form-control", rows = 5 })
                 <label>Wydawnictwo</label>
                 @Html.ListBoxFor(m => m.SelectedItemIds,
             new MultiSelectList(Model.AvailableItems, "PublisherId", "PublisherName"))
@@ -32,6 +46,7 @@
                 @Html.ListBoxFor(m => m.SelectedAuthors,
                 new MultiSelectList(Model.AvailableAuthors, "AuthorId", "AuthorName"))
             </div>
+
 
             <div class="form-group">
                 <div style="position:relative;">
@@ -46,7 +61,7 @@
                     </a>
                     <span class='label label-info' id="upload-file-info"></span>
                 </div>
-                @if (Model.Books.ImageData == null)
+                @if (Model.ImageData == null)
                 {
                     <div class="form-control-static">Brak zdjęcia</div>
                 }
@@ -54,7 +69,7 @@
                 {
                     <img class="img-thumbnail" width="150" height="150"
                          src="@Url.Action("GetImage", "Book",
- new { Model.Books.BookID })" />
+ new { Model.BookID })" />
                 }
             </div>
         </div>
@@ -71,7 +86,7 @@
 </div>
 
 @{
-    ViewBag.Title = "Administracja: edycja " + @Model.Books.Title;
+    ViewBag.Title = "Administracja: edycja " + @Model.Title;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
