@@ -189,64 +189,6 @@ namespace BookShop.WebUI.Controllers
             return View(user);
         }
 
-        
-        public ViewResult Test()
-        {
-            
-            var model = new TestView
-            {
-                
-                SelectedItemIds = new[] {1},
-                SelectedAuthors = new[] {1}
-
-            };
-            return View(model);
-            
-        }
-
-        [HttpPost]
-        public ActionResult Test(IEnumerable<int> selectedItemIds, TestView book, IEnumerable<int> selectedAuthors, HttpPostedFileBase image=null)
-        {
-            if (ModelState.IsValid)
-            {
-                if (image != null)
-                {
-                    book.ImageMimeType = image.ContentType;
-                    book.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(book.ImageData, 0, image.ContentLength);
-                }
-                //else
-                // {
-                
-                int aut = selectedAuthors.First();
-                int pub = selectedItemIds.First();
-                var bk = new Book
-                {
-                    BookID = book.BookID,
-                    Title = book.Title,
-                    Description = book.Description,
-                    Price = book.Price,
-                    Rating = book.Rating,
-                    Genre = book.Genre,
-                    ImageData = book.ImageData,
-                    ImageMimeType = book.ImageMimeType,
-
-                };
-                repository.SaveBook(bk, pub, aut);
-                TempData["message"] = string.Format("Zapisano {0} ", bk.Title);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(book);
-            }
-                    
-                //}
-
-            
-        }
-        
-
 
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Edit(int bookId)
@@ -315,8 +257,7 @@ namespace BookShop.WebUI.Controllers
                     book.ImageData = new byte[image.ContentLength];
                     image.InputStream.Read(book.ImageData, 0, image.ContentLength);
                 }
-                //else
-                // {
+                
 
                 int aut = selectedAuthors.First();
                 int pub = selectedItemIds.First();
@@ -341,7 +282,7 @@ namespace BookShop.WebUI.Controllers
                 return View(book);
             }
 
-            //}
+            
 
 
         }

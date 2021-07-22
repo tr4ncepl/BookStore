@@ -116,8 +116,7 @@ namespace BookShop.Domain.Concrete
             var author = context.Authors.FirstOrDefault(a => a.AuthorId == authorId);
             book.Author = author;
             if (book.BookID ==0)
-            {
-                
+            { 
                 context.Books.Add(book);
             }
             else
