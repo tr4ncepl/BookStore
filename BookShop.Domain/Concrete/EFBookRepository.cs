@@ -46,6 +46,18 @@ namespace BookShop.Domain.Concrete
             return dbEntry;
 
         }
+
+        public Author DeleteAuthor(int authorId)
+        {
+            Author dbEntry = context.Authors.Find(authorId);
+            if(dbEntry!=null)
+            {
+                context.Authors.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+
+        }
         
         public void SavePublisher(Publisher publisher)
         {
@@ -66,6 +78,18 @@ namespace BookShop.Domain.Concrete
 
             context.SaveChanges();
         }
+
+        public Publisher DeletePublisher(int publisherId)
+        {
+            Publisher dbEntry = context.Publishers.Find(publisherId);
+            if(dbEntry!=null)
+            {
+                context.Publishers.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
 
         public void SaveOrder(Order order)
         {

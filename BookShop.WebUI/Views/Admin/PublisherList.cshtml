@@ -17,6 +17,7 @@
                 <th>ID</th>
                 <th>Nazwa</th>
                 <th>Opis</th>
+                <th>Akcje</th>
 
             </tr>
             @foreach (var item in Model)
@@ -25,6 +26,13 @@
                     <td>@item.PublisherId</td>
                     <td>@Html.ActionLink(item.PublisherName, "EditPublisher", new { item.PublisherId })</td>
                     <td>@item.PublisherDesc</td>
+                    <td>
+                        @using(Html.BeginForm("DeletePublisher","Admin"))
+                {
+                    @Html.Hidden("PublisherId",item.PublisherId)
+                            <input type="submit" value="Usuń" />
+                }
+                    </td>
                 </tr>
             }
         </table>

@@ -360,6 +360,19 @@ namespace BookShop.WebUI.Controllers
         }
 
         [Authorize(Roles = ("admin,superadmin"))]
+        public ActionResult DeleteAuthor(int authorId)
+        {
+            Author deletedAuthor = repository.DeleteAuthor(authorId);
+            if(deletedAuthor!=null)
+            {
+                TempData["message"] = string.Format("Usunięto {0}", deletedAuthor.AuthorName);
+            }
+            return RedirectToAction("AuthorsList");
+        }
+
+
+
+        [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult PublisherList()
         {
             return View(repository.Publishers);
@@ -393,6 +406,18 @@ namespace BookShop.WebUI.Controllers
             {
                 return View(publisher);
             }
+        }
+
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ActionResult DeletePublisher(int publisherId)
+        {
+            Publisher deletedPublisher = repository.DeletePublisher(publisherId);
+            if(deletedPublisher!=null)
+            {
+                TempData["message"] = string.Format("Pomyślnie usunięto wydawnictwo {0}", deletedPublisher.PublisherName);
+            }
+            return RedirectToAction("PublisherList");
         }
 
 

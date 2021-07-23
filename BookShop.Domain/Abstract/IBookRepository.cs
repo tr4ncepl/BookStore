@@ -28,6 +28,10 @@ namespace BookShop.Domain.Abstract
 
         void SaveAuthor(Author author);
 
+        Author DeleteAuthor(int authorId);
+
+        Publisher DeletePublisher(int publisherId);
+
 
     }
 
