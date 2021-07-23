@@ -33,6 +33,11 @@ namespace BookShop.Domain.Concrete
             get { return context.Authors; }
         }
 
+        public IEnumerable<Genre> Genres
+        {
+            get { return context.Genres; }
+        }
+
 
         public Book DeleteBook(int bookID)
         {
@@ -162,6 +167,35 @@ namespace BookShop.Domain.Concrete
             }
 
             context.SaveChanges();
+        }
+
+
+        public void SaveGenre(Genre genre)
+        {
+         if(genre.GenreId==0)
+            {
+                context.Genres.Add(genre);
+            }
+            else
+            {
+                Genre dbEntry = context.Genres.Find(genre.GenreId);
+               {
+                    dbEntry.GenreName = genre.GenreName;
+ 
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public Genre DeleteGenre(int genreId)
+        {
+            Genre dbEntry = context.Genres.Find(genreId);
+            if(dbEntry!=null)
+            {
+                context.Genres.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
         }
     }
 }

@@ -421,6 +421,58 @@ namespace BookShop.WebUI.Controllers
         }
 
 
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult GenresList()
+        {
+            return View(repository.Genres);
+        }
+
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult NewGenre()
+        {
+            return View("EditGenre", new Genre());
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult EditGenre(int genreId)
+        {
+            Genre genre = repository.Genres
+                .FirstOrDefault(g => g.GenreId == genreId);
+            return View(genre);
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        [HttpPost]
+        public ActionResult EditGenre(Genre genre)
+        {
+            if(ModelState.IsValid)
+            {
+                repository.SaveGenre(genre);
+                TempData["message"] = string.Format("Pomyślnie zapisano gatunek: {0}", genre.GenreName);
+                return RedirectToAction("GenresList");
+            }
+            else
+            {
+                return View(genre);
+            }
+        }
+
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ActionResult DeleteGenre(int genreId)
+        {
+            Genre deletedGenre = repository.DeleteGenre(genreId);
+            if(deletedGenre!=null)
+            {
+                TempData["message"] = string.Format("Pomyślnie usunięto: {0}", deletedGenre.GenreName);
+                
+            }
+            return RedirectToAction("GenresList");
+
+        }
+
+
 
 
 

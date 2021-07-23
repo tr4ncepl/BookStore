@@ -68,3 +68,5 @@ C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.M
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addBookPubRel.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations._ref.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.updateAuthorInfo.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addGenreEntity.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.updateGenre.resources

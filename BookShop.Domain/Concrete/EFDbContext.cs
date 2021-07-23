@@ -22,5 +22,7 @@ namespace BookShop.Domain.Concrete
 
         public DbSet<Publisher> Publishers { get; set; }
 
+        public DbSet<Genre> Genres { get; set; }
+
     }
 }

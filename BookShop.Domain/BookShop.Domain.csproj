@@ -120,6 +120,7 @@
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\BookOrder.cs" />
     <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Publisher.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
@@ -199,6 +200,14 @@
     <Compile Include="Migrations\202107231208466_updateAuthorInfo.designer.cs">
       <DependentUpon>202107231208466_updateAuthorInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107231216284_addGenreEntity.cs" />
+    <Compile Include="Migrations\202107231216284_addGenreEntity.designer.cs">
+      <DependentUpon>202107231216284_addGenreEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107231251192_updateGenre.cs" />
+    <Compile Include="Migrations\202107231251192_updateGenre.designer.cs">
+      <DependentUpon>202107231251192_updateGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -263,6 +272,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107231208466_updateAuthorInfo.resx">
       <DependentUpon>202107231208466_updateAuthorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107231216284_addGenreEntity.resx">
+      <DependentUpon>202107231216284_addGenreEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107231251192_updateGenre.resx">
+      <DependentUpon>202107231251192_updateGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

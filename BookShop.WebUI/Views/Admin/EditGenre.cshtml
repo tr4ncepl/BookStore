@@ -1,0 +1,39 @@
+﻿@model BookShop.Domain.Entities.Genre
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edycja @Model.GenreId</h3>
+    </div>
+
+    @using (Html.BeginForm("EditGenre", "Admin"))
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.GenreId)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                switch (property.PropertyName)
+                {
+                    case "GenreId":
+                        break;
+                    default:
+                        <div class="form-group">
+                            <label>@(property.DisplayName ?? property.PropertyName)</label>
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                            @Html.ValidationMessage(property.PropertyName)
+                        </div>
+                        break;
+                }
+            }
+        </div>
+
+        <div class="panel-footer">
+            <input type="submit" value="Zapisz" class="btn btn-primary" />
+            @Html.ActionLink("Anuluj i wróć do listy", "GenresList", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
+
+@{
+    ViewBag.Title = "Administracja: edycja " + @Model.GenreName;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}

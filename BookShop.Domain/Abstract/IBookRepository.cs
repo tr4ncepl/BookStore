@@ -16,6 +16,8 @@ namespace BookShop.Domain.Abstract
         IEnumerable<Publisher> Publishers { get; }
 
         IEnumerable<Author> Authors { get; }
+
+        IEnumerable<Genre> Genres { get; }
         
 
         void SaveBook(Book book,int publisherId, int authorId);
@@ -31,6 +33,10 @@ namespace BookShop.Domain.Abstract
         Author DeleteAuthor(int authorId);
 
         Publisher DeletePublisher(int publisherId);
+
+        void SaveGenre(Genre genre);
+
+        Genre DeleteGenre(int genreId);
 
 
     }

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BookShop.Domain.Entities.Genre>
+
+@{ 
+    ViewBag.Title = "Panel administracyjny: Lita gatunków";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Lista gatunków</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>Nazwa gatunku</th>
+                <th>Akcje</th>
+            </tr>
+
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.GenreId</td>
+                    <td>@Html.ActionLink(item.GenreName, "EditGenre", new { item.GenreId })</td>
+                    <td>
+                        @using(Html.BeginForm("DeleteGenre","Admin"))
+                {
+                    @Html.Hidden("GenreId", item.GenreId)
+                            <input type="submit" value="Usuń" />
+                }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Dodaj gatunek", "NewGenre", null, new {@class="btn btn-default"})
+    </div>
+</div>
