@@ -138,12 +138,14 @@ namespace BookShop.Domain.Concrete
             }
             context.SaveChanges();
         }
-        public void SaveBook(Book book,int publisherId, int authorId)
+        public void SaveBook(Book book,int publisherId, int authorId, int genreId)
         {
             var publisher = context.Publishers.FirstOrDefault(p => p.PublisherId == publisherId);
             book.Publisher = publisher;
             var author = context.Authors.FirstOrDefault(a => a.AuthorId == authorId);
             book.Author = author;
+            var genre = context.Genres.FirstOrDefault(g => g.GenreId == genreId);
+            book.Genre = genre;
             if (book.BookID ==0)
             { 
                 context.Books.Add(book);
@@ -162,6 +164,7 @@ namespace BookShop.Domain.Concrete
                     dbEntry.ImageMimeType = book.ImageMimeType;
                     dbEntry.Publisher = publisher;
                     dbEntry.Author = author;
+                    dbEntry.Genre = genre;
                     
                 }
             }

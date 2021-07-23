@@ -208,6 +208,10 @@
     <Compile Include="Migrations\202107231251192_updateGenre.designer.cs">
       <DependentUpon>202107231251192_updateGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107231314062_addRelationBookGenre.cs" />
+    <Compile Include="Migrations\202107231314062_addRelationBookGenre.designer.cs">
+      <DependentUpon>202107231314062_addRelationBookGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -278,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107231251192_updateGenre.resx">
       <DependentUpon>202107231251192_updateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107231314062_addRelationBookGenre.resx">
+      <DependentUpon>202107231314062_addRelationBookGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

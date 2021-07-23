@@ -26,6 +26,8 @@
                     case "Books":
                     case "AvailableItems":
                     case "AvailableAuthors":
+                    case "SelectedGenres":
+                    case "AvailableGenres":
 
 
                         break;
@@ -45,6 +47,9 @@
                 <label>Autor</label>
                 @Html.ListBoxFor(m => m.SelectedAuthors,
                 new MultiSelectList(Model.AvailableAuthors, "AuthorId", "AuthorName"))
+                <label>Gatunek</label>
+                @Html.ListBoxFor(m=>m.SelectedGenres, 
+                new MultiSelectList(Model.AvailableGenres, "GenreId", "GenreName" ))
             </div>
 
 

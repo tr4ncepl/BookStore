@@ -55,11 +55,6 @@ namespace BookShop.WebUI.Models
         public string Title { get; set; }
 
 
-        [Required(ErrorMessage = "Proszę podać gatunek.")]
-        [Display(Name = "Gatunek")]
-        public string Genre { get; set; }
-
-
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Proszę podać dodatnią cenę.")]
         [Display(Name = "Cena")]
@@ -83,7 +78,9 @@ namespace BookShop.WebUI.Models
 
         public IEnumerable<int> SelectedAuthors { get; set; }
 
-        public Book Books { get; set; }
+        public IEnumerable<int> SelectedGenres { get; set; }
+
+
         public IEnumerable<Publisher> AvailableItems
         {
             get { return context.Publishers; }
@@ -92,6 +89,11 @@ namespace BookShop.WebUI.Models
         public IEnumerable<Author> AvailableAuthors
         {
             get { return context.Authors; }
+        }
+
+        public IEnumerable<Genre> AvailableGenres
+        {
+            get { return context.Genres; }
         }
     }
 

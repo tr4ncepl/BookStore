@@ -70,3 +70,4 @@ C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.M
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.updateAuthorInfo.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addGenreEntity.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.updateGenre.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addRelationBookGenre.resources

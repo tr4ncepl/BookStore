@@ -194,22 +194,25 @@ namespace BookShop.WebUI.Controllers
         public ViewResult Edit(int bookId)
         {
             var book = repository.Books.Include(b=>b.Publisher)
+                .Include(b=>b.Genre)
                 .Include(b=>b.Author)
                 .FirstOrDefault(b => b.BookID == bookId);
             var autId = book.Author.AuthorId;
             var pubId = book.Publisher.PublisherId;
+            var genId = book.Genre.GenreId;
             var model = new TestView
             {
                 BookID=book.BookID,
                 Title=book.Title,
                 Rating=book.Rating,
-                Genre = book.Genre,
+               
                 Description=book.Description,
                 Price=book.Price,
                 ImageData=book.ImageData,
                 ImageMimeType=book.ImageMimeType,
                 SelectedItemIds = new[] { pubId },
-                SelectedAuthors = new[] { autId }
+                SelectedAuthors = new[] { autId },
+                SelectedGenres = new[] {genId}
 
             };
             return View(model);
@@ -247,7 +250,7 @@ namespace BookShop.WebUI.Controllers
 
         [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
-        public ActionResult Edit(IEnumerable<int> selectedItemIds, TestView book, IEnumerable<int> selectedAuthors, HttpPostedFileBase image = null)
+        public ActionResult Edit(IEnumerable<int> selectedItemIds, TestView book, IEnumerable<int> selectedAuthors,IEnumerable<int> selectedGenres, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
             {
@@ -261,6 +264,7 @@ namespace BookShop.WebUI.Controllers
 
                 int aut = selectedAuthors.First();
                 int pub = selectedItemIds.First();
+                int gen = selectedGenres.First();
                 var bk = new Book
                 {
                     BookID = book.BookID,
@@ -268,12 +272,11 @@ namespace BookShop.WebUI.Controllers
                     Description = book.Description,
                     Price = book.Price,
                     Rating = book.Rating,
-                    Genre = book.Genre,
                     ImageData = book.ImageData,
                     ImageMimeType = book.ImageMimeType,
 
                 };
-                repository.SaveBook(bk, pub, aut);
+                repository.SaveBook(bk, pub, aut,gen);
                 TempData["message"] = string.Format("Zapisano {0} ", bk.Title);
                 return RedirectToAction("Index");
             }
@@ -294,7 +297,8 @@ namespace BookShop.WebUI.Controllers
             {
                 
                 SelectedItemIds = new[] { 1 },
-                SelectedAuthors = new[] { 1 }
+                SelectedAuthors = new[] { 1 },
+                SelectedGenres = new[] {1}
 
             };
             return View("Edit", model);

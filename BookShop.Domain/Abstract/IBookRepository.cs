@@ -20,7 +20,7 @@ namespace BookShop.Domain.Abstract
         IEnumerable<Genre> Genres { get; }
         
 
-        void SaveBook(Book book,int publisherId, int authorId);
+        void SaveBook(Book book,int publisherId, int authorId, int genreId);
 
         Book DeleteBook(int  bookID);
 

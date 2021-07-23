@@ -25,8 +25,9 @@ namespace BookShop.WebUI.Controllers
             BookListViewModel model = new BookListViewModel
             {
                 Books = repository.Books
-                //.Include(b=>b.Publisher)
-                .Where(b => genre == null || b.Genre == genre)
+                .Include(b=>b.Publisher)
+                .Include(b=>b.Genre)
+                .Where(b => genre == null || b.Genre.GenreName == genre)
                 .OrderBy(b => b.BookID)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
@@ -36,7 +37,7 @@ namespace BookShop.WebUI.Controllers
                     ItemsPerPage = PageSize,
                     TotalItems = genre ==null?
                         repository.Books.Count() :
-                        repository.Books.Where(e=>e.Genre==genre).Count()
+                        repository.Books.Where(e=>e.Genre.GenreName==genre).Count()
                 },
                 CurrentGenre = genre
             };

@@ -18,14 +18,6 @@ namespace BookShop.Domain.Entities
         [Display(Name ="Tytuł")]
         public string Title { get; set; }
 
-        
-
-
-        [Required(ErrorMessage ="Proszę podać gatunek.")]
-        [Display(Name ="Gatunek")]
-        public string Genre { get; set; }
-        
-
         [Required]
         [Range(0.01, double.MaxValue,ErrorMessage ="Proszę podać dodatnią cenę.")]
         [Display(Name ="Cena")]
@@ -51,6 +43,9 @@ namespace BookShop.Domain.Entities
         [Display(Name = "Wydawca")]
         
         public Publisher Publisher { get; set; }
+
+        [Display(Name ="Gatunek")]
+        public Genre Genre { get; set; }
 
 
 
