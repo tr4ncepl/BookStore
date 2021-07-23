@@ -10,9 +10,9 @@ namespace BookShop.Domain.Entities
     public class Author
     {
         public int AuthorId { get; set; }
-        [Display(Name="Imie")]
+        [Display(Name="Imię i nazwisko")]
         public string AuthorName { get; set; }
-        [Display(Name ="Nazwisko")]
-        public string AuthorLastName { get; set; }
+        [Display(Name ="Opis")]
+        public string AuthorDesc { get; set; }
     }
 }

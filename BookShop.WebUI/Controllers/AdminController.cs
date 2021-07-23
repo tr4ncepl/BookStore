@@ -350,7 +350,7 @@ namespace BookShop.WebUI.Controllers
             if(ModelState.IsValid)
             {
                 repository.SaveAuthor(author);
-                TempData["message"] = string.Format("Zapisano {0} ", author.AuthorName + " " + author.AuthorLastName);
+                TempData["message"] = string.Format("Zapisano {0} ", author.AuthorName);
                 return RedirectToAction("AuthorsList");
             }
             else

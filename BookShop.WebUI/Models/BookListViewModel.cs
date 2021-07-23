@@ -51,7 +51,7 @@ namespace BookShop.WebUI.Models
         public int BookID { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwę książki.")]
-        [Display(Name = "PIES")]
+        [Display(Name = "Tytuł")]
         public string Title { get; set; }
 
 

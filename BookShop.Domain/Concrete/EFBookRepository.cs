@@ -128,7 +128,7 @@ namespace BookShop.Domain.Concrete
                 if(dbEntry!=null)
                 {
                     dbEntry.AuthorName = author.AuthorName;
-                    dbEntry.AuthorLastName = author.AuthorLastName;
+                    dbEntry.AuthorDesc = author.AuthorDesc;
                 }
             }
             context.SaveChanges();
