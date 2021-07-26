@@ -38,6 +38,11 @@ namespace BookShop.Domain.Concrete
             get { return context.Genres; }
         }
 
+        public IEnumerable<BookOrder> BookOrders
+        {
+            get { return context.BookOrders; }
+        }
+
 
         public Book DeleteBook(int bookID)
         {

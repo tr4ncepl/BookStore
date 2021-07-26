@@ -18,6 +18,10 @@ namespace BookShop.Domain.Abstract
         IEnumerable<Author> Authors { get; }
 
         IEnumerable<Genre> Genres { get; }
+
+        IEnumerable<BookOrder> BookOrders { get; }
+
+        
         
 
         void SaveBook(Book book,int publisherId, int authorId, int genreId);

@@ -477,6 +477,37 @@ namespace BookShop.WebUI.Controllers
         }
 
 
+        public ViewResult OrderDetails()
+        {
+            Order order = repository.Orders
+                .FirstOrDefault(f => f.OrderId == 9);
+
+            var query = repository.BookOrders
+                .Where(book => book.order.OrderId == 9);
+
+            var total = query.Sum(e => e.book.Price * e.Quantity);
+
+            var model = new OrderDetailsViewModel
+            {
+                OrderId=order.OrderId,
+                Adress = order.RecAdress,
+                Name = order.RecName,
+                City = order.RecCity,
+                Country = order.RecCountry,
+                ZipCode = order.RecZip,
+                BooksInOrder=query,
+                TotalValue=total
+
+
+
+            };
+
+            return View(model);
+
+
+        }
+
+
 
 
 

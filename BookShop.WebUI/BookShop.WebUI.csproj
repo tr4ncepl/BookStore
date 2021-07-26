@@ -192,6 +192,7 @@
     <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\CartIndexViewModel.cs" />
+    <Compile Include="Models\OrderDetailsViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\BookListViewModel.cs" />
     <Compile Include="Models\CreateModel.cs" />
@@ -229,6 +230,7 @@
     <Content Include="Views\Admin\EditAuthor.cshtml" />
     <Content Include="Views\Admin\GenresList.cshtml" />
     <Content Include="Views\Admin\EditGenre.cshtml" />
+    <Content Include="Views\Admin\OrderDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
