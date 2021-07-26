@@ -6,8 +6,7 @@
 }
 
 
-
-<div class="panel panel-heading">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3>Lista zamówień</h3>
     </div>
@@ -18,15 +17,22 @@
                 <th>Kupujący</th>
                 <th>Adres</th>
                 <th>Cena</th>
+                <th>Akcje</th>
             </tr>
 
             @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.OrderId</td>
-                    <td>@Html.ActionLink(item.RecName, "EditOrder", new { item.OrderId })</td>
+                    <td>@item.RecName</td>
                     <td>@item.RecAdress</td>
                     <td class="NumericCol">@item.TotalValue.ToString("c")</td>
+                    <td>@Html.ActionLink("Edycja", "EditOrder", new { item.OrderId }) | 
+                    @Html.ActionLink("Szczegóły", "OrderDetails", new { @class = "btn btn-default" , item.OrderId })
+                    
+                        </td> 
+                    
+
                 </tr>
             }
         </table>

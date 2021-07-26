@@ -477,13 +477,13 @@ namespace BookShop.WebUI.Controllers
         }
 
 
-        public ViewResult OrderDetails()
+        public ViewResult OrderDetails(int orderId)
         {
             Order order = repository.Orders
-                .FirstOrDefault(f => f.OrderId == 9);
+                .FirstOrDefault(f => f.OrderId == orderId);
 
             var query = repository.BookOrders
-                .Where(book => book.order.OrderId == 9);
+                .Where(book => book.order.OrderId == orderId);
 
             var total = query.Sum(e => e.book.Price * e.Quantity);
 
