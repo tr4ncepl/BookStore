@@ -5,7 +5,7 @@
         <h3>Szczegóły zamówienia nr @Model.OrderId</h3>
     </div>
 
-    @using (Html.BeginForm("TestEditOrder", "Admin"))
+    @using (Html.BeginForm("EditOrder", "Admin"))
     {
         <div class="panel-body">
             @Html.HiddenFor(m => m.OrderId)

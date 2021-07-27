@@ -57,6 +57,28 @@ namespace BookShop.Domain.Concrete
 
         }
 
+        public Order DeleteOrder(int orderId)
+        {
+            Order orderEntry = context.Orders.Find(orderId);
+            if(orderEntry!=null)
+            {
+                context.Orders.Remove(orderEntry);
+            }
+            var bOrderEntry = context.BookOrders
+                .Where(bo => bo.order.OrderId == orderId);
+
+            foreach(var value in bOrderEntry)
+            {
+                if(value!=null)
+                {
+                    context.BookOrders.Remove(value);
+                }
+            }
+            context.SaveChanges();
+
+            return orderEntry;
+        }
+
         public Author DeleteAuthor(int authorId)
         {
             Author dbEntry = context.Authors.Find(authorId);

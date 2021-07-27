@@ -276,6 +276,9 @@ namespace BookShop.WebUI.Controllers
             }
         }
 
+
+
+
         
 
 
@@ -510,7 +513,18 @@ namespace BookShop.WebUI.Controllers
 
         }
 
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ActionResult DeleteOrder(int orderId)
+        {
+            Order deletedOrder = repository.DeleteOrder(orderId);
+            if(deletedOrder!=null)
+            {
+                TempData["message"] = string.Format("Pomyślnie usunięto zamowienie nr:  {0}", deletedOrder.OrderId);
+            }
+            return RedirectToAction("OrderList");
+        }
 
+        [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult OrderDetails(int orderId)
         {
             Order order = repository.Orders

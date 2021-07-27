@@ -28,7 +28,8 @@
                     <td>@item.RecAdress</td>
                     <td class="NumericCol">@item.TotalValue.ToString("c")</td>
                     <td>@Html.ActionLink("Edycja", "EditOrder", new { item.OrderId }) | 
-                    @Html.ActionLink("Szczegóły", "OrderDetails", new { @class = "btn btn-default" , item.OrderId })
+                    @Html.ActionLink("Szczegóły", "OrderDetails", new { @class = "btn btn-default" , item.OrderId }) |
+                    @Html.ActionLink("Usuń", "DeleteOrder", new {item.OrderId})
                     
                         </td> 
                     

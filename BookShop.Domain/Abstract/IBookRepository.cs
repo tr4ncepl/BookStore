@@ -42,6 +42,8 @@ namespace BookShop.Domain.Abstract
 
         Genre DeleteGenre(int genreId);
 
+        Order DeleteOrder(int orderId);
+
 
     }
 
