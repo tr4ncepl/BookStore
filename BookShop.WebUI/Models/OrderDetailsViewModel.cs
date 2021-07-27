@@ -40,9 +40,19 @@ namespace BookShop.WebUI.Models
 
         public IEnumerable<BookOrder> BooksInOrder { get; set; }
 
+    }
 
-                
+    public class AddBooksToOrderViewModel
+    {
+        [Required(ErrorMessage = "Proszę podać dodatnią cenę.")]
+        [Display(Name = "Ilość")]
+        public int Quantity { get; set; }
+
+        public int OrderId { get; set; }
+
+        public IEnumerable<int> SelectedBookId { get; set; }
 
 
+        public IEnumerable<Book> AvailableBooks { get; set; }
     }
 }

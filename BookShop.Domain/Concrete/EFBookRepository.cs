@@ -217,12 +217,29 @@ namespace BookShop.Domain.Concrete
             context.SaveChanges();
         }
 
+        public void AddBookToOrder(BookOrder bookOrder)
+        {
+            
+        }
+
         public Genre DeleteGenre(int genreId)
         {
             Genre dbEntry = context.Genres.Find(genreId);
             if(dbEntry!=null)
             {
                 context.Genres.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
+        public BookOrder DeleteBookInOrder(int orderId, int bookId)
+        {
+            BookOrder dbEntry = context.BookOrders
+                .Where(bo => bo.order.OrderId == orderId && bo.book.BookID == bookId).First();
+            if(dbEntry!=null)
+            {
+                context.BookOrders.Remove(dbEntry);
                 context.SaveChanges();
             }
             return dbEntry;

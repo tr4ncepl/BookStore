@@ -327,6 +327,61 @@ namespace BookShop.WebUI.Controllers
 
         }
 
+        [Authorize(Roles =("admin,superadmin"))]
+        public ViewResult NewBookInOrder()
+        {
+            var books = repository.Books;
+            var model = new AddBooksToOrderViewModel
+            {
+                SelectedBookId = new[] { 1 },
+                AvailableBooks = books
+                
+            };
+            return View("EditBookInOrder", model);
+        }
+
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult EditBookInOrder()
+        {
+            var books = repository.Books;
+            var model = new AddBooksToOrderViewModel
+            {
+                AvailableBooks = books,
+                SelectedBookId = new[] { 1 },
+                Quantity = 3
+            };
+            return View(model);
+        }
+        /*
+        [HttpPost]
+        public ActionResult EditBookInOrder(IEnumerable<int> SelectedBookId, int quantity, int orderId)
+        {
+            if (ModelState.IsValid)
+            {
+                var book = repository.Books
+                    .FirstOrDefault(b => b.BookID == SelectedBookId.First());
+                var order = repository.Orders
+                    .FirstOrDefault(o => o.OrderId == orderId);
+                BookOrder bookOrder = new BookOrder
+                {
+                    Quantity = quantity,
+                    book = book,
+                    order = order
+                };
+
+                repository.AddBookToOrder(bookOrder);
+                TempData["message"] = string.Format("Dodano nowy przedmiot do zamówienia");
+                return 
+            }
+            else
+            {
+                return View(bookOrder);
+            }
+        }
+        */
+
+
+
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult Create()
         {
@@ -522,6 +577,46 @@ namespace BookShop.WebUI.Controllers
                 TempData["message"] = string.Format("Pomyślnie usunięto zamowienie nr:  {0}", deletedOrder.OrderId);
             }
             return RedirectToAction("OrderList");
+        }
+
+
+        [Authorize(Roles =("admin,superadmin"))]
+        public ActionResult DeleteBookInOrder(int orderId, int bookId)
+        {
+            BookOrder deletedBook = repository.DeleteBookInOrder(orderId, bookId);
+            if(deletedBook!=null)
+            {
+                TempData["message"] = string.Format("Pomyślnie usunięto książkę z zamówienia");
+            }
+
+            Order order = repository.Orders
+                .FirstOrDefault(f => f.OrderId == orderId);
+
+            var query = repository.BookOrders
+                .Where(book => book.order.OrderId == orderId);
+
+            var total = query.Sum(e => e.book.Price * e.Quantity);
+
+            var model = new OrderDetailsViewModel
+            {
+                OrderId = order.OrderId,
+                Adress = order.RecAdress,
+                Name = order.RecName,
+                City = order.RecCity,
+                Country = order.RecCountry,
+                State = order.RecState,
+                ZipCode = order.RecZip,
+                BooksInOrder = query,
+                GiftWrap = order.GiftWrap,
+                TotalValue = total
+
+
+
+            };
+
+
+
+            return RedirectToAction("EditOrder", model);
         }
 
         [Authorize(Roles = ("admin,superadmin"))]

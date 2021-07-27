@@ -44,6 +44,12 @@ namespace BookShop.Domain.Abstract
 
         Order DeleteOrder(int orderId);
 
+        BookOrder DeleteBookInOrder(int orderId, int bookId);
+
+        void AddBookToOrder(BookOrder bookOrder);
+
+
+
 
     }
 

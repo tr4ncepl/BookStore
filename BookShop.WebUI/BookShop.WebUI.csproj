@@ -231,6 +231,7 @@
     <Content Include="Views\Admin\GenresList.cshtml" />
     <Content Include="Views\Admin\EditGenre.cshtml" />
     <Content Include="Views\Admin\OrderDetails.cshtml" />
+    <Content Include="Views\Admin\EditBookInOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
