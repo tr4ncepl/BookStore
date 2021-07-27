@@ -225,24 +225,58 @@ namespace BookShop.WebUI.Controllers
         {
             Order order = repository.Orders
                 .FirstOrDefault(o => o.OrderId == orderId);
-            return View(order);
+
+            var query = repository.BookOrders
+                .Where(book => book.order.OrderId == orderId);
+
+            var total = query.Sum(e => e.book.Price * e.Quantity);
+
+            var model = new OrderDetailsViewModel
+            {
+                OrderId = order.OrderId,
+                Adress = order.RecAdress,
+                Name = order.RecName,
+                City = order.RecCity,
+                Country = order.RecCountry,
+                State = order.RecState,
+                ZipCode = order.RecZip,
+                BooksInOrder = query,
+                TotalValue = total
+            };
+            return View(model);
         }
 
         [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
-        public ActionResult EditOrder(Order order)
+        public ActionResult EditOrder(OrderDetailsViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var order = new Order
+                {
+                    OrderId = model.OrderId,
+                    RecAdress = model.Adress,
+                    RecCity = model.City,
+                    RecName = model.Name,
+                    RecCountry = model.Country,
+                    RecState = model.State,
+                    RecZip = model.ZipCode,
+                    TotalValue = model.TotalValue,
+                    GiftWrap = model.GiftWrap,
+                    BookOrders = (ICollection<BookOrder>)model.BooksInOrder
+                };
+
                 repository.SaveOrder(order);
-                TempData["message"] = string.Format("Zapisano zamówienie nr {0}", order.OrderId);
+                TempData["message"] = string.Format("Zaktualizowano zamówienie nr: {0}", order.OrderId);
                 return RedirectToAction("OrderList");
             }
             else
             {
-                return View(order);
+                return View(model);
             }
         }
+
+        
 
 
 
@@ -494,8 +528,10 @@ namespace BookShop.WebUI.Controllers
                 Name = order.RecName,
                 City = order.RecCity,
                 Country = order.RecCountry,
+                State = order.RecState,
                 ZipCode = order.RecZip,
                 BooksInOrder=query,
+                GiftWrap=order.GiftWrap,
                 TotalValue=total
 
 

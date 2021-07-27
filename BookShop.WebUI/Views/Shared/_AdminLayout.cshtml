@@ -14,12 +14,28 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    <div class="navbar navbar-inverse" role="navigation">
+        <a class="navbar-brand" href="#">Księgarnia</a>
+        @Html.ActionLink("Wyloguj", "Logout", "Account", null, new { @class = "btn" })
+        @Html.ActionLink("Ksiazki", "Index", "Admin", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Wydawcy", "PublisherList", "Admin", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Autorzy", "AuthorsList", "Admin", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Gatunki", "GenresList", "Admin", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Uzytkownicy", "UserList", "Admin", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Zamowienia", "OrderList", "Admin", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Role", "Index", "RoleAdmin", null, new { @class = "btn btn-default" })
+
+
+
+    </div>
     <div>
-        @if (TempData["message"] != null) { 
-        <div class="alert alert-success">@TempData["message"]</div>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
         }
         @RenderBody()
     </div>
+
 
 </body>
 </html>

@@ -12,6 +12,8 @@
     <div class="navbar navbar-inverse" role="navigation">
         <a class="navbar-brand" href="#">Księgarnia</a>
         @Html.ActionLink("Wyloguj", "Logout", "Account", null, new { @class = "btn" })
+        
+
         @Html.Action("Summary", "Cart")
     </div>
     <div class="row panel">

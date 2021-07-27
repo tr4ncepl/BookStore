@@ -1,44 +1,77 @@
-﻿@model BookShop.Domain.Entities.Order
+﻿@model BookShop.WebUI.Models.OrderDetailsViewModel
 
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
-        <h3>Edycja Zamówienia nr: @Model.OrderId</h3>
+        <h3>Szczegóły zamówienia nr @Model.OrderId</h3>
     </div>
-    @using (Html.BeginForm())
+
+    @using (Html.BeginForm("TestEditOrder", "Admin"))
     {
         <div class="panel-body">
             @Html.HiddenFor(m => m.OrderId)
+            @Html.HiddenFor(m=>m.TotalValue)
+
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
                 switch (property.PropertyName)
                 {
+                    case "BooksInOrder":
                     case "OrderId":
-                    case "BookOrders":
+                    case "TotalValue":
                         break;
                     default:
                         <div class="form-group">
                             <label>@(property.DisplayName ?? property.PropertyName)</label>
-                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                            @Html.ValidationMessage(property.PropertyName)
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control"})
 
                         </div>
                         break;
+
                 }
             }
 
+            <table class="table table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nazwa</th>
+                        <th>Ilość</th>
+                        <th class="text-right">Cena</th>
+                        <th class="text-right">Wartość</th>
 
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.BooksInOrder)
+                    {
+                        <tr>
+                            <td class="text-left">@item.BookID</td>
+                            <td class="text-left">@item.book.Title</td>
+                            <td class="text-left">@item.Quantity</td>
+                            <td class="text-right">@item.book.Price.ToString("c")</td>
+                            <td class="text-right">@((item.Quantity*item.book.Price).ToString("c"))</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right">Razem: </td>
+                        <td class="text-right">@Model.TotalValue.ToString("c")</td>
+                    </tr>
+                </tfoot>
 
+            </table>
         </div>
 
         <div class="panel-footer">
             <input type="submit" value="Zapisz" class="btn btn-primary" />
-            @Html.ActionLink("Anuluj i wróć do listy", "OrderList", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Cofnij", "OrderList", null, new { @class = "btn btn-default" })
         </div>
     }
-
 </div>
 
-@{ 
-    ViewBag.Title = "Edycja zamówienia nr: " + Model.OrderId;
+
+@{
+    ViewBag.Title = "Administracja: edycja " + @Model.OrderId;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
