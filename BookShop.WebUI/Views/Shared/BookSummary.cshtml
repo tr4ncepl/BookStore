@@ -4,7 +4,7 @@
 
     @if (Model.ImageData != null)
     {
-        <div class="pull-left" style="margin-right: 10px;margin-bottom: 10px" >
+        <div class="pull-left" style="margin-right: 10px;margin-bottom: 10px">
             <img class="img-thumbnail" width="75" height="75"
                  src="@Url.Action("GetImage", "Book", new { Model.BookID })" />
         </div>
@@ -22,14 +22,16 @@
             <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
         </div>
     }
-    
+
 
     <h4>
         <span class="lead">@Model.Genre.GenreName</span>
     </h4>
+
+    <h3>@Html.ActionLink(Model.Author.AuthorName,"BooksByAuthor", new {Model.Author.AuthorId})</h3>
     <span class="pull-right label label-info">Ocena: @Model.Rating</span>
 
-    
+
 
 </div>
 

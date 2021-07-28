@@ -20,6 +20,32 @@ namespace BookShop.WebUI.Controllers
             this.repository = bookRepository;
         }
 
+        public ViewResult BooksByAuthor(int authorId, int page = 1)
+        {
+            Author author = repository.Authors.FirstOrDefault(a => a.AuthorId == authorId);
+            BooksByAuthorViewModel model = new BooksByAuthorViewModel
+            {
+                Books = repository.Books
+                .Include(b => b.Publisher)
+                .Include(b => b.Author)
+                .Include(b=>b.Genre)
+                .Where(b => b.Author.AuthorId == authorId)
+                .OrderBy(b => b.BookID)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = authorId == 0 ? repository.Books.Count() : repository.Books.Where(e => e.Author.AuthorId == authorId).Count()
+                },
+                Author=author
+                
+            };
+
+            return View(model);
+        }
+
         public ViewResult List(string genre, int page =1)
         {
             BookListViewModel model = new BookListViewModel
@@ -27,6 +53,7 @@ namespace BookShop.WebUI.Controllers
                 Books = repository.Books
                 .Include(b=>b.Publisher)
                 .Include(b=>b.Genre)
+                .Include(b=>b.Author)
                 .Where(b => genre == null || b.Genre.GenreName == genre)
                 .OrderBy(b => b.BookID)
                 .Skip((page - 1) * PageSize)

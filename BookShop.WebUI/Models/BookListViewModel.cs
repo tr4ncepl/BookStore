@@ -17,6 +17,17 @@ namespace BookShop.WebUI.Models
         public PagingInfo PagingInfo { get; set; }
 
         public string CurrentGenre { get; set; }
+
+        
+    }
+
+    public class BooksByAuthorViewModel
+    {
+        public IQueryable<Book> Books { get; set; }
+
+        public PagingInfo PagingInfo { get; set; }
+
+        public Author Author { get; set; }
     }
 
 

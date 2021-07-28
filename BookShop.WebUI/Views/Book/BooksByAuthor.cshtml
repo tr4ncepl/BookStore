@@ -1,0 +1,23 @@
+﻿@model BookShop.WebUI.Models.BooksByAuthorViewModel
+
+@{
+    ViewBag.Title = "TEST";
+}
+
+
+
+<h1> ---------------------@Model.Author.AuthorName---------------------</h1>
+
+<div class="panel-default">
+    @Model.Author.AuthorDesc
+
+
+
+
+</div>
+
+@foreach (var p in Model.Books)
+{
+    @Html.Partial("BookSummary", p);
+}
+
