@@ -219,7 +219,19 @@ namespace BookShop.Domain.Concrete
 
         public void AddBookToOrder(BookOrder bookOrder)
         {
-            context.BookOrders.Add(bookOrder);
+            var checkIfExist = context.BookOrders.Find(bookOrder.book.BookID, bookOrder.order.OrderId);
+
+            if(checkIfExist!=null)
+            {
+                checkIfExist.Quantity += bookOrder.Quantity;
+            }
+            else
+            {
+                context.BookOrders.Add(bookOrder);
+            }
+
+            
+            
             Order dbEntry = context.Orders.Find(bookOrder.order.OrderId);
             var query = context.BookOrders
                 .Where(o => o.order.OrderId == bookOrder.order.OrderId);
