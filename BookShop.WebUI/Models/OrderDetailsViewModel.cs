@@ -44,7 +44,7 @@ namespace BookShop.WebUI.Models
 
     public class AddBooksToOrderViewModel
     {
-        [Required(ErrorMessage = "Proszę podać dodatnią cenę.")]
+        [Range(1,10, ErrorMessage = "Proszę podać dodatnią cenę.")]
         [Display(Name = "Ilość")]
         public int Quantity { get; set; }
 

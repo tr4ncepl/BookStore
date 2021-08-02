@@ -20,7 +20,7 @@
            new MultiSelectList(Model.AvailableBooks, "BookId", "Title"))
         </div>
         <div class="panel-body">
-            @Html.HiddenFor(m => m.Quantity)
+            
             @Html.HiddenFor(m=>m.OrderId)
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {

@@ -341,18 +341,7 @@ namespace BookShop.WebUI.Controllers
             return View("EditBookInOrder", model);
         }
 
-        [Authorize(Roles = ("admin,superadmin"))]
-        public ViewResult EditBookInOrder()
-        {
-           
-            var model = new AddBooksToOrderViewModel
-            {
-                AvailableBooks = repository.Books,
-                SelectedBookId = new[] { 1 },
-                Quantity = 3
-            };
-            return View(model);
-        }
+        
         
         [HttpPost]
         public ActionResult EditBookInOrder(IEnumerable<int> SelectedBookId, int quantity, int orderId)
@@ -367,7 +356,7 @@ namespace BookShop.WebUI.Controllers
                     .FirstOrDefault(o => o.OrderId == orderId);
                 BookOrder bookOrder = new BookOrder
                 {
-                    Quantity = 2,
+                    Quantity = quantity,
                     book = book,
                     order = order
                 };

@@ -53,19 +53,20 @@
                         <td class="text-right">@((item.Quantity*item.book.Price).ToString("c"))</td>
                         <td>@Html.ActionLink("Usuń", "DeleteBookInOrder", new { item.order.OrderId, item.book.BookID })</td>
                     </tr>
-                    <tr>
-                        <td>@Html.ActionLink("Dodaj", "NewBookInOrder", new {item.order.OrderId},new { @class = "btn btn-default" })</td>
-                    </tr>
+
                 }
             </tbody>
+            
             <tfoot>
+               
                 <tr>
-                    <td colspan="4" class="text-right">Razem: </td>
+                    <td class="text-left">@Html.ActionLink("Dodaj", "NewBookInOrder", new { Model.OrderId }, new { @class = "btn btn-default" })</td>
+                    <td colspan="3" class="text-right">Razem: </td>
                     <td class="text-right">@Model.TotalValue.ToString("c")</td>
                 </tr>
 
             </tfoot>
-           
+
         </table>
         </div>
         
