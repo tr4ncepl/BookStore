@@ -1,7 +1,7 @@
 ﻿@model BookShop.WebUI.Models.BooksByAuthorViewModel
 
 @{
-    ViewBag.Title = "TEST";
+    ViewBag.Title = "Książki autora: " + Model.Author.AuthorName;
 }
 
 
@@ -10,14 +10,15 @@
 
 <div class="panel-default">
     @Model.Author.AuthorDesc
-
-
-
-
 </div>
 
 @foreach (var p in Model.Books)
 {
     @Html.Partial("BookSummary", p);
 }
+
+<div class="btn-group-lg pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("BooksByAuthor",
+    new { page = x, authName = Model.Author.AuthorName }))
+</div>
 

@@ -3,8 +3,6 @@ TODO
 #Dodanie nowych parametrów podczas rejestracji
 
 
-#Lista zamówień/wyszukiwanie
-
 #Wyszukiwarka
 
 #Rozbudowanie informacji o książkach

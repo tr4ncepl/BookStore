@@ -328,13 +328,14 @@ namespace BookShop.WebUI.Controllers
         }
 
         [Authorize(Roles =("admin,superadmin"))]
-        public ViewResult NewBookInOrder()
+        public ViewResult NewBookInOrder(int orderId)
         {
             var books = repository.Books;
             var model = new AddBooksToOrderViewModel
             {
                 SelectedBookId = new[] { 1 },
-                AvailableBooks = books
+                AvailableBooks = books,
+                OrderId = orderId
                 
             };
             return View("EditBookInOrder", model);
@@ -343,42 +344,46 @@ namespace BookShop.WebUI.Controllers
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult EditBookInOrder()
         {
-            var books = repository.Books;
+           
             var model = new AddBooksToOrderViewModel
             {
-                AvailableBooks = books,
+                AvailableBooks = repository.Books,
                 SelectedBookId = new[] { 1 },
                 Quantity = 3
             };
             return View(model);
         }
-        /*
+        
         [HttpPost]
         public ActionResult EditBookInOrder(IEnumerable<int> SelectedBookId, int quantity, int orderId)
         {
+            var model = GetOrderModel(orderId);
+
             if (ModelState.IsValid)
             {
                 var book = repository.Books
-                    .FirstOrDefault(b => b.BookID == SelectedBookId.First());
+                    .FirstOrDefault(b => b.BookID == SelectedBookId.FirstOrDefault());
                 var order = repository.Orders
                     .FirstOrDefault(o => o.OrderId == orderId);
                 BookOrder bookOrder = new BookOrder
                 {
-                    Quantity = quantity,
+                    Quantity = 2,
                     book = book,
                     order = order
                 };
 
                 repository.AddBookToOrder(bookOrder);
                 TempData["message"] = string.Format("Dodano nowy przedmiot do zamówienia");
-                return 
+
+
+                return RedirectToAction("EditOrder",model);
             }
             else
             {
-                return View(bookOrder);
+                return RedirectToAction("Index");
             }
         }
-        */
+        
 
 
 
@@ -580,15 +585,8 @@ namespace BookShop.WebUI.Controllers
         }
 
 
-        [Authorize(Roles =("admin,superadmin"))]
-        public ActionResult DeleteBookInOrder(int orderId, int bookId)
+        public OrderDetailsViewModel GetOrderModel (int orderId)
         {
-            BookOrder deletedBook = repository.DeleteBookInOrder(orderId, bookId);
-            if(deletedBook!=null)
-            {
-                TempData["message"] = string.Format("Pomyślnie usunięto książkę z zamówienia");
-            }
-
             Order order = repository.Orders
                 .FirstOrDefault(f => f.OrderId == orderId);
 
@@ -613,6 +611,20 @@ namespace BookShop.WebUI.Controllers
 
 
             };
+
+            return model;
+        }
+
+        [Authorize(Roles =("admin,superadmin"))]
+        public ActionResult DeleteBookInOrder(int orderId, int bookId)
+        {
+            BookOrder deletedBook = repository.DeleteBookInOrder(orderId, bookId);
+            if(deletedBook!=null)
+            {
+                TempData["message"] = string.Format("Pomyślnie usunięto książkę z zamówienia");
+            }
+
+            var model = GetOrderModel(orderId);
 
 
 

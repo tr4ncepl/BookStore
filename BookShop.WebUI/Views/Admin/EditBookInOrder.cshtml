@@ -8,7 +8,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3>Edycja</h3>
+        <h3>Dodanie ksiazek do zamowienia nr @Model.OrderId</h3>
     </div>
 
     @using (Html.BeginForm("EditBookInOrder", "Admin"))
@@ -43,7 +43,7 @@
 
         <div class="panel-footer">
             <input  type="submit" value="Zapisz" class="btn btn-primary" />
-            @Html.ActionLink("Anuluj i wróć do zamówienia","EditOrder",null, new {@class="btn btn-default"})
+            @Html.ActionLink("Anuluj i wróć do zamówienia","EditOrder",new { Model.OrderId }, new {@class="btn btn-default"})
         </div>
     }
 </div>

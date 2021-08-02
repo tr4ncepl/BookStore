@@ -3,7 +3,14 @@
 
 <div class="panel">
     <div class="panel-heading">
-        <h3>Edycja @Model.Title</h3>
+        @if (Model.Title == null)
+        {
+        <h3>Dodawanie nowej książki</h3>
+        }
+            else
+            {
+            <h3>Edycja @Model.Title</h3>
+            }
     </div>
 
     @using (Html.BeginForm("Edit", "Admin",

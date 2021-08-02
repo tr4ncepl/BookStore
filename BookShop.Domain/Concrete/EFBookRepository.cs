@@ -219,8 +219,21 @@ namespace BookShop.Domain.Concrete
 
         public void AddBookToOrder(BookOrder bookOrder)
         {
-            
+            context.BookOrders.Add(bookOrder);
+            Order dbEntry = context.Orders.Find(bookOrder.order.OrderId);
+            var query = context.BookOrders
+                .Where(o => o.order.OrderId == bookOrder.order.OrderId);
+
+            var value = query.Sum(e => e.book.Price * e.Quantity);
+            if(dbEntry!=null)
+            {
+                dbEntry.TotalValue = value;
+            }
+
+            context.SaveChanges();
         }
+
+        
 
         public Genre DeleteGenre(int genreId)
         {

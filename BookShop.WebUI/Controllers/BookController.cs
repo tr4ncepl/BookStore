@@ -20,7 +20,7 @@ namespace BookShop.WebUI.Controllers
             this.repository = bookRepository;
         }
 
-        public ViewResult BooksByAuthor(int authorId, int page = 1)
+        public ViewResult BooksByAuthor(int  authorId , string authorName, int page = 1)
         {
             Author author = repository.Authors.FirstOrDefault(a => a.AuthorId == authorId);
             BooksByAuthorViewModel model = new BooksByAuthorViewModel
@@ -37,9 +37,12 @@ namespace BookShop.WebUI.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = authorId == 0 ? repository.Books.Count() : repository.Books.Where(e => e.Author.AuthorId == authorId).Count()
+                    TotalItems = author.AuthorName == null  ?
+                        repository.Books.Count() :
+                        repository.Books.Where(e => e.Author.AuthorName == authorName).Count()
                 },
-                Author=author
+                Author=author,
+                CurrentAuthor=author.AuthorName
                 
             };
 

@@ -53,6 +53,9 @@
                         <td class="text-right">@((item.Quantity*item.book.Price).ToString("c"))</td>
                         <td>@Html.ActionLink("Usuń", "DeleteBookInOrder", new { item.order.OrderId, item.book.BookID })</td>
                     </tr>
+                    <tr>
+                        <td>@Html.ActionLink("Dodaj", "NewBookInOrder", new {item.order.OrderId},new { @class = "btn btn-default" })</td>
+                    </tr>
                 }
             </tbody>
             <tfoot>

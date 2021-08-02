@@ -28,6 +28,8 @@ namespace BookShop.WebUI.Models
         public PagingInfo PagingInfo { get; set; }
 
         public Author Author { get; set; }
+
+        public string CurrentAuthor { get; set; }
     }
 
 
