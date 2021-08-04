@@ -17,14 +17,24 @@
                         // Brak operacji.
                         break;
                     default:
-                        <div class="form-group">
-                            <label>@(property.DisplayName ?? property.PropertyName)</label>
-             
-                                @Html.TextBox(property.PropertyName, null,
-                                new { @class = "form-control" })
+            <div class="form-group">
+                <label>@(property.DisplayName ?? property.PropertyName)</label>
 
-                            @Html.ValidationMessage(property.PropertyName)
-                        </div>
+                @if (property.PropertyName == "AuthorDesc")
+                {
+                    @Html.TextArea(property.PropertyName, null,
+                   new { @class = "form-control",rows = 9 })
+                }
+                else
+                {
+                    @Html.TextBox(property.PropertyName, null,
+                   new { @class = "form-control" })
+                }
+
+                
+
+                @Html.ValidationMessage(property.PropertyName)
+            </div>
                         break;
                 }
             }

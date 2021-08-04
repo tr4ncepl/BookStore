@@ -7,13 +7,13 @@ namespace BookShop.Domain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class addGenreEntity : IMigrationMetadata
+    public sealed partial class HopeFix : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addGenreEntity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(HopeFix));
         
         string IMigrationMetadata.Id
         {
-            get { return "202107231216284_addGenreEntity"; }
+            get { return "202108041832515_HopeFix"; }
         }
         
         string IMigrationMetadata.Source

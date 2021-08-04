@@ -44,7 +44,7 @@ namespace BookShop.Domain.Concrete
             string passowrd = "Test123$";
             string email = "admin@example.com";
 
-            if(!roleManager.RoleExists(roleName))
+            if (!roleManager.RoleExists(roleName))
             {
                 roleManager.Create(new AppRole(roleName));
             }
@@ -55,7 +55,7 @@ namespace BookShop.Domain.Concrete
                 userManager.Create(new AppUser { UserName = userName, Email = email }, passowrd);
                 user = userManager.FindByName(userName);
             }
-            if(!userManager.IsInRole(user.Id,roleName))
+            if (!userManager.IsInRole(user.Id, roleName))
             {
                 userManager.AddToRole(user.Id, roleName);
             }

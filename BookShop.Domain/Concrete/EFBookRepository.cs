@@ -186,7 +186,7 @@ namespace BookShop.Domain.Concrete
                     dbEntry.Description = book.Description;
                     dbEntry.Price = book.Price;
                     dbEntry.Genre = book.Genre;
-                    dbEntry.Rating = book.Rating;
+                    //dbEntry.Rating = book.Rating;
                     dbEntry.ImageData = book.ImageData;
                     dbEntry.ImageMimeType = book.ImageMimeType;
                     dbEntry.Publisher = publisher;

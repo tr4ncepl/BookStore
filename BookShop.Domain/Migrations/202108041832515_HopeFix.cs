@@ -3,14 +3,16 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class test : DbMigration
+    public partial class HopeFix : DbMigration
     {
         public override void Up()
         {
+           
         }
         
         public override void Down()
         {
+           
         }
     }
 }

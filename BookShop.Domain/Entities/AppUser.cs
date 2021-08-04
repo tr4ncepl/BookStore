@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace BookShop.Domain.Entities
 {
+
     public class AppUser : IdentityUser
     {
+        
     }
 }

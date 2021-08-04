@@ -23,10 +23,13 @@ namespace BookShop.WebUI.Controllers
 
         private IBookRepository repository;
 
-        
+        public AdminController(IBookRepository repo)
+        {
+            repository = repo;
+        }
 
-        
-        
+
+
 
         [Authorize(Roles =("admin,superadmin"))]
         public ActionResult UserList()
@@ -55,7 +58,7 @@ namespace BookShop.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser user = new AppUser { UserName = model.Name, Email = model.Email };
+                AppUser user = new AppUser { UserName = model.Name, Email = model.Email};
                 IdentityResult result = await UserManager.CreateAsync(user,
                 model.Password);
                 if (result.Succeeded)
@@ -69,6 +72,12 @@ namespace BookShop.WebUI.Controllers
             }
             return View(model);
         }
+
+        
+
+
+
+
         private void AddErrorsFromResult(IdentityResult result)
         {
             foreach (string error in result.Errors)
@@ -79,10 +88,7 @@ namespace BookShop.WebUI.Controllers
 
        
 
-        public AdminController(IBookRepository repo)
-        {
-            repository = repo;
-        }
+        
 
         
 
@@ -204,7 +210,7 @@ namespace BookShop.WebUI.Controllers
             {
                 BookID=book.BookID,
                 Title=book.Title,
-                Rating=book.Rating,
+                //Rating=book.Rating,
                
                 Description=book.Description,
                 Price=book.Price,
@@ -308,7 +314,7 @@ namespace BookShop.WebUI.Controllers
                     Title = book.Title,
                     Description = book.Description,
                     Price = book.Price,
-                    Rating = book.Rating,
+                    //Rating = book.Rating,
                     ImageData = book.ImageData,
                     ImageMimeType = book.ImageMimeType,
 

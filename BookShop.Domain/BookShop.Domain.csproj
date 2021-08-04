@@ -124,93 +124,13 @@
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Publisher.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
-    <Compile Include="Migrations\202107161106489_AddManyToManyOrders.cs" />
-    <Compile Include="Migrations\202107161106489_AddManyToManyOrders.designer.cs">
-      <DependentUpon>202107161106489_AddManyToManyOrders.cs</DependentUpon>
+    <Compile Include="Migrations\202108041832515_HopeFix.cs" />
+    <Compile Include="Migrations\202108041832515_HopeFix.designer.cs">
+      <DependentUpon>202108041832515_HopeFix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107161314155_fix1.cs" />
-    <Compile Include="Migrations\202107161314155_fix1.designer.cs">
-      <DependentUpon>202107161314155_fix1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201428238_addPublisher.cs" />
-    <Compile Include="Migrations\202107201428238_addPublisher.designer.cs">
-      <DependentUpon>202107201428238_addPublisher.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201458028_PublisherFix.cs" />
-    <Compile Include="Migrations\202107201458028_PublisherFix.designer.cs">
-      <DependentUpon>202107201458028_PublisherFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201504148_bookPublisherRelation.cs" />
-    <Compile Include="Migrations\202107201504148_bookPublisherRelation.designer.cs">
-      <DependentUpon>202107201504148_bookPublisherRelation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201507050_fixBook.cs" />
-    <Compile Include="Migrations\202107201507050_fixBook.designer.cs">
-      <DependentUpon>202107201507050_fixBook.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201707159_test.cs" />
-    <Compile Include="Migrations\202107201707159_test.designer.cs">
-      <DependentUpon>202107201707159_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201711241_testfix.cs" />
-    <Compile Include="Migrations\202107201711241_testfix.designer.cs">
-      <DependentUpon>202107201711241_testfix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201714421_v2.cs" />
-    <Compile Include="Migrations\202107201714421_v2.designer.cs">
-      <DependentUpon>202107201714421_v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201721061_addAuthorEntity.cs" />
-    <Compile Include="Migrations\202107201721061_addAuthorEntity.designer.cs">
-      <DependentUpon>202107201721061_addAuthorEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201722493_addAuthor.cs" />
-    <Compile Include="Migrations\202107201722493_addAuthor.designer.cs">
-      <DependentUpon>202107201722493_addAuthor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201749311_updateAuthor.cs" />
-    <Compile Include="Migrations\202107201749311_updateAuthor.designer.cs">
-      <DependentUpon>202107201749311_updateAuthor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201753509_authorBookRelation.cs" />
-    <Compile Include="Migrations\202107201753509_authorBookRelation.designer.cs">
-      <DependentUpon>202107201753509_authorBookRelation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201805109_deletePublishersfromBook.cs" />
-    <Compile Include="Migrations\202107201805109_deletePublishersfromBook.designer.cs">
-      <DependentUpon>202107201805109_deletePublishersfromBook.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201813531_deletebrokenPublisher.cs" />
-    <Compile Include="Migrations\202107201813531_deletebrokenPublisher.designer.cs">
-      <DependentUpon>202107201813531_deletebrokenPublisher.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201826296_testNewPublisher.cs" />
-    <Compile Include="Migrations\202107201826296_testNewPublisher.designer.cs">
-      <DependentUpon>202107201826296_testNewPublisher.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107201842210_addBookPubRel.cs" />
-    <Compile Include="Migrations\202107201842210_addBookPubRel.designer.cs">
-      <DependentUpon>202107201842210_addBookPubRel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107211752526_ref.cs" />
-    <Compile Include="Migrations\202107211752526_ref.designer.cs">
-      <DependentUpon>202107211752526_ref.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107231208466_updateAuthorInfo.cs" />
-    <Compile Include="Migrations\202107231208466_updateAuthorInfo.designer.cs">
-      <DependentUpon>202107231208466_updateAuthorInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107231216284_addGenreEntity.cs" />
-    <Compile Include="Migrations\202107231216284_addGenreEntity.designer.cs">
-      <DependentUpon>202107231216284_addGenreEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107231251192_updateGenre.cs" />
-    <Compile Include="Migrations\202107231251192_updateGenre.designer.cs">
-      <DependentUpon>202107231251192_updateGenre.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107231314062_addRelationBookGenre.cs" />
-    <Compile Include="Migrations\202107231314062_addRelationBookGenre.designer.cs">
-      <DependentUpon>202107231314062_addRelationBookGenre.cs</DependentUpon>
+    <Compile Include="Migrations\202108041836076_qqw.cs" />
+    <Compile Include="Migrations\202108041836076_qqw.designer.cs">
+      <DependentUpon>202108041836076_qqw.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -220,71 +140,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107161106489_AddManyToManyOrders.resx">
-      <DependentUpon>202107161106489_AddManyToManyOrders.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108041832515_HopeFix.resx">
+      <DependentUpon>202108041832515_HopeFix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107161314155_fix1.resx">
-      <DependentUpon>202107161314155_fix1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201428238_addPublisher.resx">
-      <DependentUpon>202107201428238_addPublisher.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201458028_PublisherFix.resx">
-      <DependentUpon>202107201458028_PublisherFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201504148_bookPublisherRelation.resx">
-      <DependentUpon>202107201504148_bookPublisherRelation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201507050_fixBook.resx">
-      <DependentUpon>202107201507050_fixBook.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201707159_test.resx">
-      <DependentUpon>202107201707159_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201711241_testfix.resx">
-      <DependentUpon>202107201711241_testfix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201714421_v2.resx">
-      <DependentUpon>202107201714421_v2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201721061_addAuthorEntity.resx">
-      <DependentUpon>202107201721061_addAuthorEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201722493_addAuthor.resx">
-      <DependentUpon>202107201722493_addAuthor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201749311_updateAuthor.resx">
-      <DependentUpon>202107201749311_updateAuthor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201753509_authorBookRelation.resx">
-      <DependentUpon>202107201753509_authorBookRelation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201805109_deletePublishersfromBook.resx">
-      <DependentUpon>202107201805109_deletePublishersfromBook.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201813531_deletebrokenPublisher.resx">
-      <DependentUpon>202107201813531_deletebrokenPublisher.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201826296_testNewPublisher.resx">
-      <DependentUpon>202107201826296_testNewPublisher.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107201842210_addBookPubRel.resx">
-      <DependentUpon>202107201842210_addBookPubRel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107211752526_ref.resx">
-      <DependentUpon>202107211752526_ref.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107231208466_updateAuthorInfo.resx">
-      <DependentUpon>202107231208466_updateAuthorInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107231216284_addGenreEntity.resx">
-      <DependentUpon>202107231216284_addGenreEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107231251192_updateGenre.resx">
-      <DependentUpon>202107231251192_updateGenre.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107231314062_addRelationBookGenre.resx">
-      <DependentUpon>202107231314062_addRelationBookGenre.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108041836076_qqw.resx">
+      <DependentUpon>202108041836076_qqw.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

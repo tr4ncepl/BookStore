@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using BookShop.Domain.Entities;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace BookShop.Domain.Concrete
 {
     public class EFDbContext : DbContext
     {
 
-        public EFDbContext() : base("name=EFDbContext") { }
+        public EFDbContext() : base("EFDbContext") { }
         public DbSet<Book> Books { get; set; }
 
         public DbSet<Order> Orders { get; set; }
@@ -23,6 +24,8 @@ namespace BookShop.Domain.Concrete
         public DbSet<Publisher> Publishers { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
+
+        
 
     }
 }

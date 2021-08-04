@@ -39,11 +39,19 @@
 
                 break;
             default:
-                <div class="form-group">
-                    <label>@(property.DisplayName ?? property.PropertyName)</label>
-                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                    @Html.ValidationMessage(property.PropertyName)
-                </div>
+    <div class="form-group">
+        <label>@(property.DisplayName ?? property.PropertyName)</label>
+        @if (property.PropertyName == "Description")
+        {
+            @Html.TextArea(property.PropertyName, null, new { @class = "form-control",rows=5 })
+        }
+        else
+        {
+            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+        }
+
+        @Html.ValidationMessage(property.PropertyName)
+    </div>
                 break;
         }
     }

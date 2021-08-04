@@ -15,6 +15,10 @@ namespace BookShop.WebUI.Models
         
         [Required]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name="Ulica i nr")]
+        public string Address { get; set; }
         [Required]
         public string Password { get; set; }
     }
