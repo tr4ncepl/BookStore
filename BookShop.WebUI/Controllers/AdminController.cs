@@ -151,12 +151,13 @@ namespace BookShop.WebUI.Controllers
 
         [Authorize(Roles = ("admin,superadmin"))]
         [HttpPost]
-        public async Task<ActionResult> EditUser(string id, string email, string password)
+        public async Task<ActionResult> EditUser(string id, string email, string password, string test)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
             if(user!=null)
             {
                 user.Email = email;
+                user.Test = test;
                 IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
                 if(!validEmail.Succeeded)
                 {
@@ -210,7 +211,7 @@ namespace BookShop.WebUI.Controllers
             {
                 BookID=book.BookID,
                 Title=book.Title,
-                //Rating=book.Rating,
+                Rating=book.Rating,
                
                 Description=book.Description,
                 Price=book.Price,
@@ -314,7 +315,7 @@ namespace BookShop.WebUI.Controllers
                     Title = book.Title,
                     Description = book.Description,
                     Price = book.Price,
-                    //Rating = book.Rating,
+                    Rating = book.Rating,
                     ImageData = book.ImageData,
                     ImageMimeType = book.ImageMimeType,
 

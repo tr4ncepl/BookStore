@@ -24,6 +24,8 @@ namespace BookShop.Domain.Concrete
             return new AppIdentityDbContext();
         }
 
+
+
     }
 
 
@@ -52,7 +54,7 @@ namespace BookShop.Domain.Concrete
             AppUser user = userManager.FindByName(userName);
             if (user == null)
             {
-                userManager.Create(new AppUser { UserName = userName, Email = email }, passowrd);
+                userManager.Create(new AppUser { UserName = userName, Email = email}, passowrd);
                 user = userManager.FindByName(userName);
             }
             if (!userManager.IsInRole(user.Id, roleName))

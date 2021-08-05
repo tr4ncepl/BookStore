@@ -10,6 +10,6 @@ namespace BookShop.Domain.Entities
 
     public class AppUser : IdentityUser
     {
-        
+        public string Test { get; set; }
     }
 }
