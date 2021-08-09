@@ -48,6 +48,7 @@ namespace BookShop.WebUI.Controllers
                 Customer customer = new Customer { UserName = model.UserName, Name = model.Name, Email = model.email, LastName =model.LastName, Address = model.Address };
                 IdentityResult result = await UserManager.CreateAsync(customer,
                 model.password);
+                IdentityResult result2 = await UserManager.AddToRoleAsync(customer.Id, "User");
                 if (result.Succeeded)
                 {
                     return RedirectToAction("List","Book", new { area = "" });
