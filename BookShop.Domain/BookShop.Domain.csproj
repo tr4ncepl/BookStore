@@ -120,6 +120,7 @@
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\BookOrder.cs" />
     <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Publisher.cs" />
@@ -140,6 +141,10 @@
     <Compile Include="Migrations\202108051522321_v1.designer.cs">
       <DependentUpon>202108051522321_v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108051625182_addBookPageNumber.cs" />
+    <Compile Include="Migrations\202108051625182_addBookPageNumber.designer.cs">
+      <DependentUpon>202108051625182_addBookPageNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -159,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108051522321_v1.resx">
       <DependentUpon>202108051522321_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108051625182_addBookPageNumber.resx">
+      <DependentUpon>202108051625182_addBookPageNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

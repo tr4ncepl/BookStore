@@ -73,6 +73,11 @@ namespace BookShop.WebUI.Models
         [Display(Name = "Cena")]
         public decimal Price { get; set; }
 
+        [Required]
+        [Range(10, int.MaxValue, ErrorMessage = "Proszę podać dodatnią ilosc stron.")]
+        [Display(Name = "Ilość stron")]
+        public int PagesNumber { get; set; }
+
         [DataType(DataType.MultilineText), Display(Name = "Opis")]
         [Required(ErrorMessage = "Proszę podać opis.")]
         public string Description { get; set; }

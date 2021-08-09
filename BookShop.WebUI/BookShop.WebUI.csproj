@@ -234,6 +234,7 @@
     <Content Include="Views\Admin\EditBookInOrder.cshtml" />
     <Content Include="Views\Book\BooksByAuthor.cshtml" />
     <Content Include="Views\Admin\UserProps.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

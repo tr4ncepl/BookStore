@@ -43,4 +43,26 @@ namespace BookShop.WebUI.Models
         public string[] IdsToAdd { get; set; }
         public string[] IdsToDelete { get; set; }
     }
+
+    public class CreateCustomerModel
+    {
+        [Required]
+        public string Name { get; set; }
+
+        
+        public string LastName { get; set; }
+
+        
+        public string Address { get; set; }
+
+        public string UserName { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+
+        public string password { get; set; }
+
+        public string email { get; set; }
+
+    }
 }

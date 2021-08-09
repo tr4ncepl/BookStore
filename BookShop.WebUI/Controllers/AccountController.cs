@@ -12,9 +12,10 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace BookShop.WebUI.Controllers
 {
-    [Authorize]
+    
     public class AccountController : Controller
     {
         // GET: Account
@@ -29,6 +30,50 @@ namespace BookShop.WebUI.Controllers
             return View();
 
         }
+
+
+        
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        
+        [HttpPost]
+        public async Task<ActionResult> Register(CreateCustomerModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                Customer customer = new Customer { UserName = model.UserName, Name = model.Name, Email = model.email, LastName =model.LastName, Address = model.Address };
+                IdentityResult result = await UserManager.CreateAsync(customer,
+                model.password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("List","Book", new { area = "" });
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            return View(model);
+        }
+
+
+
+
+
+
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (string error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
+
 
         [Authorize]
         public ActionResult Logout()

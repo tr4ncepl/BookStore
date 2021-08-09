@@ -182,6 +182,7 @@ namespace BookShop.Domain.Concrete
                 Book dbEntry = context.Books.Find(book.BookID);
                 if(dbEntry!=null)
                 {
+                    dbEntry.PagesNumber = book.PagesNumber;
                     dbEntry.Title = book.Title;
                     dbEntry.Description = book.Description;
                     dbEntry.Price = book.Price;

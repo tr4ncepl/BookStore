@@ -58,7 +58,8 @@ namespace BookShop.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser user = new AppUser { UserName = model.Name, Email = model.Email};
+                string test = "TEST";
+                AppUser user = new AppUser { UserName = model.Name, Email = model.Email, Test=test};
                 IdentityResult result = await UserManager.CreateAsync(user,
                 model.Password);
                 if (result.Succeeded)
@@ -210,9 +211,9 @@ namespace BookShop.WebUI.Controllers
             var model = new TestView
             {
                 BookID=book.BookID,
+                PagesNumber=book.PagesNumber,
                 Title=book.Title,
                 Rating=book.Rating,
-               
                 Description=book.Description,
                 Price=book.Price,
                 ImageData=book.ImageData,
@@ -312,6 +313,7 @@ namespace BookShop.WebUI.Controllers
                 var bk = new Book
                 {
                     BookID = book.BookID,
+                    PagesNumber=book.PagesNumber,
                     Title = book.Title,
                     Description = book.Description,
                     Price = book.Price,
