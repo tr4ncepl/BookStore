@@ -25,6 +25,8 @@ namespace BookShop.Domain.Concrete
 
         public DbSet<Genre> Genres { get; set; }
 
+        public DbSet<BookReview> BookReviews { get; set; }
+
         
 
     }

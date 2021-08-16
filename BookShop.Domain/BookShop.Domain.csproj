@@ -119,6 +119,7 @@
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\BookOrder.cs" />
+    <Compile Include="Entities\BookReview.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Genre.cs" />
@@ -145,6 +146,10 @@
     <Compile Include="Migrations\202108051625182_addBookPageNumber.designer.cs">
       <DependentUpon>202108051625182_addBookPageNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108161703113_addReviewToBook.cs" />
+    <Compile Include="Migrations\202108161703113_addReviewToBook.designer.cs">
+      <DependentUpon>202108161703113_addReviewToBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -167,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108051625182_addBookPageNumber.resx">
       <DependentUpon>202108051625182_addBookPageNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108161703113_addReviewToBook.resx">
+      <DependentUpon>202108161703113_addReviewToBook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

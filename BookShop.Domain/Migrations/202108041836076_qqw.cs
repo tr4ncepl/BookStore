@@ -7,7 +7,7 @@
     {
         public override void Up()
         {
-            
+            /*
             CreateTable(
                 "dbo.BookOrders",
                 c => new
@@ -21,6 +21,7 @@
                 .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
                 .Index(t => t.BookId)
                 .Index(t => t.OrderId);
+            */
             
         }
         

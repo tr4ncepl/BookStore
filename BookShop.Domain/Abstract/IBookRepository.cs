@@ -21,6 +21,8 @@ namespace BookShop.Domain.Abstract
 
         IEnumerable<BookOrder> BookOrders { get; }
 
+        IEnumerable<BookReview> BookReviews { get; }
+
         
         
 

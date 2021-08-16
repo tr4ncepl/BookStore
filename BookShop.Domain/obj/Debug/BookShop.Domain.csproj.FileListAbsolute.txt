@@ -54,3 +54,4 @@ C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.M
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.fixregister.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.v1.resources
 C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addBookPageNumber.resources
+C:\Users\tr4nc\source\repos\BookShop\BookShop.Domain\obj\Debug\BookShop.Domain.Migrations.addReviewToBook.resources
