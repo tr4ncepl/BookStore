@@ -10,7 +10,7 @@
         </div>
     }
     <h3>
-        <strong>@Model.Title</strong>
+        <strong>@Html.ActionLink(Model.Title,"BookDetails",new { Model.BookID})</strong>
         <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
     </h3>
     @using (Html.BeginForm("AddToCart", "Cart"))

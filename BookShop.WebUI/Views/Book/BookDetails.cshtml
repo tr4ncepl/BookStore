@@ -1,0 +1,37 @@
+﻿@model BookShop.Domain.Entities.Book
+
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="well">
+    <div class="pull-left" style="margin-right: 10px;margin-bottom: 10px">
+        <img class="img-rounded" width="180" height="240"
+             src="@Url.Action("GetImage", "Book", new { Model.BookID })" />
+    </div>
+    
+    <h1><strong>@Model.Title</strong></h1>
+    <h2>Autor: @Model.Author.AuthorName</h2>
+    <h4>Ocena: @Model.Rating</h4>
+    <h4>Wysyłka w <a class="text-success">24 godziny</a> </h4>
+    <h4>Wydawnictwo: @Model.Publisher.PublisherName</h4>
+    <h4>Ilość stron: @Model.PagesNumber</h4>
+
+    @using(Html.BeginForm("AddToCart","Cart"))
+            {
+<div class="left">
+    @Html.HiddenFor(x => x.BookID)
+    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+    <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
+</div>
+            }
+</div>
+
+<div class="well">
+    <h4>Opis</h4>
+
+    <h5>@Model.Description</h5>
+</div>
+

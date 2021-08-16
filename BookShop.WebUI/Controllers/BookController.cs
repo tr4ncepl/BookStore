@@ -86,6 +86,19 @@ namespace BookShop.WebUI.Controllers
                 return null;
             }
         }
+
+
+
+        public ViewResult BookDetails(int bookId)
+        {
+            Book book = repository.Books
+                .Include(b => b.Publisher)
+                .Include(b => b.Author)
+                .Include(b => b.Genre)
+                .FirstOrDefault(b => b.BookID == bookId);
+
+            return View(book);
+        }
         
     }
 }
