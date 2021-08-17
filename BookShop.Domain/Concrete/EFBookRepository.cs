@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BookShop.Domain.Abstract;
 using BookShop.Domain.Entities;
+
 
 
 namespace BookShop.Domain.Concrete
@@ -220,6 +219,14 @@ namespace BookShop.Domain.Concrete
  
                 }
             }
+            context.SaveChanges();
+        }
+
+        public void AddReview(BookReview review, int bookId)
+        {
+            var book = context.Books.Find(bookId);
+            review.Book = book;
+            context.BookReviews.Add(review);
             context.SaveChanges();
         }
 

@@ -191,6 +191,7 @@
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\BookDetailsViewModel.cs" />
     <Compile Include="Models\CartIndexViewModel.cs" />
     <Compile Include="Models\OrderDetailsViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />

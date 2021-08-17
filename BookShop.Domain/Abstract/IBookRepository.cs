@@ -50,6 +50,8 @@ namespace BookShop.Domain.Abstract
 
         void AddBookToOrder(BookOrder bookOrder);
 
+        void AddReview(BookReview review, int bookId);
+
 
 
 

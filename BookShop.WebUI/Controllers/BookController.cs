@@ -20,6 +20,32 @@ namespace BookShop.WebUI.Controllers
             this.repository = bookRepository;
         }
 
+        [HttpPost]
+        public ActionResult AddReview(BookDetailsViewModel model)
+        {
+            Book book = repository.Books
+                .Include(b => b.Author)
+                .Include(b => b.Publisher)
+                .Include(b => b.Genre)
+                .FirstOrDefault(b => b.BookID == model.Book.BookID);
+
+            var review = new BookReview
+            {
+                BookRating = 4,
+                PublicationDate = DateTime.Now,
+                ReviewAuthor = model.ReviewAuthor,
+                ReviewDesc = model.ReviewDesc
+            };
+
+            repository.AddReview(review, model.Book.BookID);
+
+            var nmodel = new BookDetailsViewModel
+            {
+                Book = book
+            };
+            return View("BookDetails",nmodel) ;
+        }
+
         public ViewResult BooksByAuthor(int  authorId , string authorName, int page = 1)
         {
             Author author = repository.Authors.FirstOrDefault(a => a.AuthorId == authorId);
@@ -97,8 +123,16 @@ namespace BookShop.WebUI.Controllers
                 .Include(b => b.Genre)
                 .FirstOrDefault(b => b.BookID == bookId);
 
-            return View(book);
+            var model = new BookDetailsViewModel
+            {
+                Book = book
+            };
+
+            return View(model);
         }
+
+
+       
         
     }
 }
