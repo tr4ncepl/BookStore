@@ -42,7 +42,7 @@ namespace BookShop.Domain.Concrete
             get { return context.BookOrders; }
         }
 
-        public IEnumerable<BookReview> BookReviews
+        public IQueryable<BookReview> BookReviews
         {
             get { return context.BookReviews; }
         }
@@ -278,6 +278,17 @@ namespace BookShop.Domain.Concrete
             if(dbEntry!=null)
             {
                 context.BookOrders.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
+        public BookReview DeleteReview(int reviewId)
+        {
+            BookReview dbEntry = context.BookReviews.Find(reviewId);
+            if(dbEntry!=null)
+            {
+                context.BookReviews.Remove(dbEntry);
                 context.SaveChanges();
             }
             return dbEntry;

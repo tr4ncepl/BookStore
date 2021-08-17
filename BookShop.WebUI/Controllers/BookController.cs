@@ -21,7 +21,7 @@ namespace BookShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddReview(BookDetailsViewModel model)
+        public ViewResult AddReview(BookDetailsViewModel model)
         {
             Book book = repository.Books
                 .Include(b => b.Author)
@@ -43,7 +43,7 @@ namespace BookShop.WebUI.Controllers
             {
                 Book = book
             };
-            return View("BookDetails",nmodel) ;
+            return View("BookDetails", nmodel);
         }
 
         public ViewResult BooksByAuthor(int  authorId , string authorName, int page = 1)

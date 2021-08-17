@@ -427,6 +427,12 @@ namespace BookShop.WebUI.Controllers
             return View(repository.Authors);
         }
 
+        [Authorize(Roles = ("admin,superadmin"))]
+        public ViewResult ReviewsList()
+        {
+            return View(repository.BookReviews.Include(r => r.Book));
+        }
+
 
         [Authorize(Roles = ("admin,superadmin"))]
         public ViewResult NewAuthor()
@@ -517,6 +523,17 @@ namespace BookShop.WebUI.Controllers
                 TempData["message"] = string.Format("Pomyślnie usunięto wydawnictwo {0}", deletedPublisher.PublisherName);
             }
             return RedirectToAction("PublisherList");
+        }
+
+        [Authorize(Roles =("admin,superadmin"))]
+        public ActionResult DeleteReview(int reviewId)
+        {
+            BookReview deletedReview = repository.DeleteReview(reviewId);
+            if(deletedReview!=null)
+            {
+                TempData["message"] = string.Format("Pomyślnie usunięto recenzję {0}", deletedReview.BookReviewId);
+            }
+            return Redirect("ReviewsList");
         }
 
 

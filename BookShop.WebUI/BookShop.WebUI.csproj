@@ -237,6 +237,7 @@
     <Content Include="Views\Admin\UserProps.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Book\BookDetails.cshtml" />
+    <Content Include="Views\Admin\ReviewsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

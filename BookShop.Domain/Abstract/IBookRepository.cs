@@ -21,7 +21,7 @@ namespace BookShop.Domain.Abstract
 
         IEnumerable<BookOrder> BookOrders { get; }
 
-        IEnumerable<BookReview> BookReviews { get; }
+        IQueryable<BookReview> BookReviews { get; }
 
         
         
@@ -51,6 +51,8 @@ namespace BookShop.Domain.Abstract
         void AddBookToOrder(BookOrder bookOrder);
 
         void AddReview(BookReview review, int bookId);
+
+        BookReview DeleteReview(int reviewId);
 
 
 
