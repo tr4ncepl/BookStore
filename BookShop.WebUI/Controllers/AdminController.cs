@@ -103,6 +103,11 @@ namespace BookShop.WebUI.Controllers
             
         }
 
+        public ViewResult TestView()
+        {
+            return View();
+        }
+
         [Authorize(Roles =("admin,superadmin"))]
         public ViewResult OrderList()
         {
